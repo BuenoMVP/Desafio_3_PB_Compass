@@ -1,9 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./Frontend/Pages/Home"
+
 function App() {
 
   return (
-    <>
-      <img src='https://desafio-3-mvbp-bucket.s3.amazonaws.com/Baloes.jpg' />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

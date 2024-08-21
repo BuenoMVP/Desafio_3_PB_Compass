@@ -1,0 +1,89 @@
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    width: 100%;
+    height: 15rem;
+    padding: 2rem 2rem;
+    color: #fff;
+    border-bottom: solid 3px red;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    span {
+        font-size: 14px;
+    }
+}
+
+.aboutBox{
+    display: inherit;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 25%;
+
+    .navSocial {
+        display: inherit;
+        justify-content: space-between;
+        width: 6rem;
+
+        a:hover {
+            transform: scale(1.1);
+        }
+
+    }
+}
+
+.informationBox {
+    display: inherit;
+    height: 100%;
+    width: 49%;
+    padding: 0 1rem;
+    border-left: solid 1px #302f2f;
+    border-right: solid 1px #302f2f;
+
+    div {
+        display: inherit;
+        flex-direction: column;
+    }
+
+    .navCompany {
+        display: inherit;
+        flex-direction: column;
+        height: 100%;
+        width: 33%;
+        gap: 1rem
+    }
+
+    .navTopDestination {
+        display: inherit;
+        flex-direction: column;
+        height: 100%;
+        width: 67%;
+        gap: 1rem;
+
+        .table {
+            display: grid;
+            grid-template-columns: 10rem 10rem;
+            gap: 1rem;
+        }
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+}
+
+.contactBox {
+    display: inherit;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    gap: 1rem;
+    padding-left: 1rem;
+}

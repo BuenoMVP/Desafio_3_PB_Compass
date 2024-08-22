@@ -1,0 +1,25 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    justify-content: space-between;
+
+    div {
+        display: inherit;
+        justify-content: space-around;
+        align-items: center;
+        border: solid 1px #A9AFBB;
+        border-radius: 8px;
+        height: 2.4rem;
+        max-width: 15rem;
+        padding-left: .4rem;
+
+        input {
+            border: none;
+            width: 85%;
+            height: 100%;
+            border-radius: 8px;
+            outline: 0;
+        }
+    }
+}

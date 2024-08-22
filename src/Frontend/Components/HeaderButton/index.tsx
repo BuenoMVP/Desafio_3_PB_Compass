@@ -1,10 +1,7 @@
+import { HeaderButtonProps } from '../../Types/types'
 import styles from './style.module.css'
 
-interface Props {
-    title: string,
-}
-
-const HeaderButton = (props:Props) => {
+const HeaderButton = (props:HeaderButtonProps) => {
   return (
     <button className={styles.button}>
         <p>{props.title}</p>

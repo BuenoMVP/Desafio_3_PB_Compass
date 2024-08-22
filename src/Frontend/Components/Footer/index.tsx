@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <section className={styles.section}>
         <div className={styles.aboutBox}>
-            <p className="logo logoTextFamily">Trisog</p>
+            <p>Trisog</p>
             <br/>
-            <span className='cursiveTextFamily'>Need any help?</span>
+            <span className='cursiveText'>Need any help?</span>
             <p>Call Us: (888)1234 5678</p>
             <br/>
             <span>Love Street, Muscat, Oman</span>
@@ -24,14 +24,14 @@ const Footer = () => {
         </div>
         <div className={styles.informationBox}>
             <nav className={styles.navCompany}>
-                <span className='cursiveTextFamily'>Company</span>
+                <span className='cursiveText'>Company</span>
                 <a href='/' >About Us</a>
                 <a href='/' >Contact Us</a>
                 <a href='/' >Travel Guides</a>
                 <a href='/' >Data Police</a>
             </nav>
             <nav className={styles.navTopDestination}>
-                <span className='cursiveTextFamily'>Top Destination</span>
+                <span className='cursiveText'>Top Destination</span>
                 <div className={styles.table}>
                     <a href='/' >Las Vegas</a>
                     <a href='/' >Tokyo</a>
@@ -45,7 +45,7 @@ const Footer = () => {
             </nav>
         </div>
         <div className={styles.contactBox}>
-            <span className='cursiveTextFamily'>Sign up Newsletter</span>
+            <span className='cursiveText'>Sign up Newsletter</span>
             <p>@ 2023 Trisog All Right Reserved</p>
         </div>
     </section>

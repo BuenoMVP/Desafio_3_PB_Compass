@@ -1,0 +1,23 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+
+    div {
+        display: inherit;
+        justify-content: space-around;
+        align-items: center;
+        border: solid 1px #A9AFBB;
+        border-radius: 8px;
+        height: 2.4rem;
+        width: 15rem;
+
+        input {
+            border: none;
+            width: 85%;
+            height: 100%;
+            border-radius: 8px;
+            outline: 0;
+        }
+    }
+}

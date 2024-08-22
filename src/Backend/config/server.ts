@@ -1,9 +1,18 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
+import bodyParser from 'body-parser'
+import router from '../Routes/router'
+import cors from 'cors'
 
 const server = express()
 
-server.get('/', (req, res) => {
-    return res.send('Página do back end')
+server.use(bodyParser.json())
+
+server.use(cors())
+
+server.get('/', (req: Request, res: Response) => {
+    return res.send('Página inicial do back end')
 })
+
+server.use('/api', router)
 
 export { server }

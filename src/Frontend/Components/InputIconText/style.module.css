@@ -10,7 +10,7 @@
         border: solid 1px #A9AFBB;
         border-radius: 8px;
         height: 2.4rem;
-        width: 15rem;
+        max-width: 15rem;
 
         input {
             border: none;

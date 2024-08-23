@@ -25,4 +25,9 @@ interface MediaReviewProps {
     qtd_review: number
 }
 
-export type { HeaderButtonProps, InputIconTextProps, CardTourProps, MediaReviewProps }
+export type { 
+    HeaderButtonProps, 
+    InputIconTextProps, 
+    CardTourProps, 
+    MediaReviewProps 
+}

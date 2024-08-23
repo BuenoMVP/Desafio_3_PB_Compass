@@ -11,4 +11,18 @@ interface InputIconTextProps {
     icon: IconBaseProps
 }
 
-export type { HeaderButtonProps, InputIconTextProps }
+interface CardTourProps {
+    location: string, 
+    title: string,
+    review: number,
+    qtd_review: number,
+    time: number,
+    price: number
+}
+
+interface MediaReviewProps {
+    review: number,
+    qtd_review: number
+}
+
+export type { HeaderButtonProps, InputIconTextProps, CardTourProps, MediaReviewProps }

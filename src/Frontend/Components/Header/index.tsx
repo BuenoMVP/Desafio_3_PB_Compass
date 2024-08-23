@@ -13,7 +13,7 @@ const Header = () => {
             <ul className={styles.ul}>
                 <li><HeaderButton title='Home' goTo='/'/></li>
                 <li><HeaderButton title='About' goTo='/'/></li>
-                <li><HeaderButton title='Tours' goTo='/Tuor'/></li>
+                <li><HeaderButton title='Tours' goTo='/Tuors'/></li>
                 <li><HeaderButton title='Destination' goTo='/'/></li>
                 <li><HeaderButton title='Blog' goTo='/'/></li>
                 <li><HeaderButton title='Pages' goTo='/'/></li>

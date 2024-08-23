@@ -1,0 +1,37 @@
+.contentBox {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5rem;
+}
+
+.filters {
+    background-color: blue;
+    width: 15%;
+}
+
+.tuors {
+    display: flex;
+    flex-direction: column;
+    background-color: orange;
+    width: 83%;
+
+    header {
+        display: inherit;
+        justify-content: space-between;
+        flex-direction: row;
+        background-color: green;
+
+        span {
+            display: inherit;
+        }
+    }
+}
+
+#orderBox {
+    cursor: pointer;
+    background-color: red;
+    width: 20px;
+}

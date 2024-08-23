@@ -14,9 +14,6 @@
         text-decoration: none;
     }
 
-    span {
-        font-size: 14px;
-    }
 }
 
 .aboutBox{
@@ -40,6 +37,8 @@
 
 .informationBox {
     display: inherit;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 49%;
     padding: 0 1rem;
@@ -55,7 +54,7 @@
         display: inherit;
         flex-direction: column;
         height: 100%;
-        width: 33%;
+        width: 20%;
         gap: 1rem
     }
 
@@ -63,7 +62,6 @@
         display: inherit;
         flex-direction: column;
         height: 100%;
-        width: 67%;
         gap: 1rem;
 
         .table {
@@ -86,4 +84,12 @@
     width: 25%;
     gap: 1rem;
     padding-left: 1rem;
+}
+
+.emailForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    height: 50%;
 }

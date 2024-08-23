@@ -13,6 +13,7 @@
         height: 2.4rem;
         max-width: 15rem;
         padding-left: .4rem;
+        background-color: #fff;
 
         input {
             border: none;

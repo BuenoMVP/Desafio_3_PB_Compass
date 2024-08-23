@@ -4,6 +4,18 @@
   font-family: "Kaushan Script", cursive;
 }
 
+.textSizeSmall {
+  font-size: 14px;
+}
+
+.redText{
+  color: #FC5056
+}
+
+.boldText{
+  font-weight: bold;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

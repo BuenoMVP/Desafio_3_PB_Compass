@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <section className={style.section}>
         <div className={style.aboutBox}>
-            <p>Trisog</p>
+            <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Logo_Wite.svg" alt="logo image" />
             <br/>
             <span className='cursiveText textSizeSmall'>Need any help?</span>
             <p>
@@ -61,6 +61,7 @@ const Footer = () => {
                 />
                 <FormButton 
                     title='Submit'
+                    goTo=''
                 />
             </form>
             <p>@ 2023 Trisog All Right Reserved</p>

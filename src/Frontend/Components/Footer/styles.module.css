@@ -23,6 +23,10 @@
     height: 100%;
     width: 25%;
 
+    img {
+        width: 6rem;
+    }
+
     .navSocial {
         display: inherit;
         justify-content: space-between;

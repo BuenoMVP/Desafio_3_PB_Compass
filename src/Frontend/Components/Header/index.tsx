@@ -1,4 +1,4 @@
-import { FiMapPin, FiUser } from 'react-icons/fi'
+import { FiUser } from 'react-icons/fi'
 import HeaderButton from '../HeaderButton'
 import styles from './style.module.css'
 import { IoSearch } from 'react-icons/io5'
@@ -9,10 +9,7 @@ const Header = () => {
   return (
     <section className={styles.section}>
         <div className={styles.div}>
-            <button className={styles.button}>
-                <FiMapPin size={iconSize}/>
-                <p className={styles.logoText}>Trisog</p>
-            </button>
+            <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Logo_Black.svg" alt="logo-image" />   
             <ul className={styles.ul}>
                 <li><HeaderButton title='Home' goTo='/'/></li>
                 <li><HeaderButton title='About' goTo='/'/></li>

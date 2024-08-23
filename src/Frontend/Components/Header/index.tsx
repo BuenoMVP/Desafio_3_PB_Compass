@@ -14,13 +14,13 @@ const Header = () => {
                 <p className={styles.logoText}>Trisog</p>
             </button>
             <ul className={styles.ul}>
-                <li><HeaderButton title='Home'/></li>
-                <li><HeaderButton title='About'/></li>
-                <li><HeaderButton title='Tours'/></li>
-                <li><HeaderButton title='Destination'/></li>
-                <li><HeaderButton title='Blog'/></li>
-                <li><HeaderButton title='Pages'/></li>
-                <li><HeaderButton title='Contact'/></li>
+                <li><HeaderButton title='Home' goTo='/'/></li>
+                <li><HeaderButton title='About' goTo='/'/></li>
+                <li><HeaderButton title='Tours' goTo='/Tuor'/></li>
+                <li><HeaderButton title='Destination' goTo='/'/></li>
+                <li><HeaderButton title='Blog' goTo='/'/></li>
+                <li><HeaderButton title='Pages' goTo='/'/></li>
+                <li><HeaderButton title='Contact' goTo='/'/></li>
             </ul>
         </div>
         <div className={styles.div}>

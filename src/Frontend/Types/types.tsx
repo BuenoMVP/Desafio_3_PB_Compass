@@ -1,7 +1,8 @@
 import { IconBaseProps } from "react-icons"
 
 interface HeaderButtonProps {
-    title: string
+    title: string,
+    goTo: string
 }
 
 interface InputIconTextProps {

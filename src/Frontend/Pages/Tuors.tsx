@@ -31,11 +31,17 @@ const Tuor = () => {
   ]
 
   return (
-    <main>
+    <main className={style.pageContent}>
         <Header />
         <BackgroundImage imgUrl='https://desafio-3-mvbp-bucket.s3.amazonaws.com/imgBkgPraia.png' imgHeight='40rem'/>
-        <section className={`${global.contentSection} ${global.lastContentSection}`}>
-          <FormInputs />
+        <div className={style.imageText}>
+          <h1>Tuor Package</h1>
+          <p>Home / <span className='redText'>Tuor Package</span></p>
+        </div>
+        <section className={`${global.contentSection} ${global.lastContentSection} ${style.section}`}>
+          <div className={style.formBox}>
+            <FormInputs />
+          </div>
           <div className={style.contentBox}>
             <div className={style.filters}>
               <FiltersComponent title='Sumary' args={vetCategories}/>

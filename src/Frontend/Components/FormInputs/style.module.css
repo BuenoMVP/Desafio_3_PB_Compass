@@ -5,6 +5,7 @@
     border-radius: 12px;
     height: 6rem;
     width: 100%;
+    background-color: #fff;
     
     form {
         display: inherit;

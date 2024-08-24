@@ -5,19 +5,42 @@ import global from './global.module.css'
 import style from './tuors.module.css'
 import FormInputs from '../Components/FormInputs'
 import { LuArrowDownAZ } from 'react-icons/lu'
+import FiltersComponent from '../Components/FiltersComponent'
 
 const Tuor = () => {
   const iconSize: number = 20
+
+  const vetCategories: string[] = [
+   "Action",
+   "Shooter",
+   "Fighting",
+   "Puzzle",
+   "Survival Horror",
+   "Platform",
+   "Sports",
+   "Metroidvania",
+   "Adventure" 
+  ]
+
+  const vetReviews: string[] = [
+    '5 Stars',
+    '4 Stars & Up',
+    '3 Stars & Up',
+    '2 Stars & Up',
+    '1 Stars & Up'
+  ]
 
   return (
     <main>
         <Header />
         <BackgroundImage imgUrl='https://desafio-3-mvbp-bucket.s3.amazonaws.com/imgBkgPraia.png' imgHeight='40rem'/>
-        <section className={global.contentSection}>
+        <section className={`${global.contentSection} ${global.lastContentSection}`}>
           <FormInputs />
           <div className={style.contentBox}>
             <div className={style.filters}>
-              Filtros
+              <FiltersComponent title='Sumary' args={vetCategories}/>
+              <FiltersComponent title='Sumary' args={vetCategories}/>
+              <FiltersComponent title='Reviews' args={vetReviews}/>
             </div>
             <div className={style.tuors}>
               <header>

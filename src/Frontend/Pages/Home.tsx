@@ -11,7 +11,7 @@ const Home = () => {
     <main>
       <Header />
       <BackgroundImage imgUrl='https://desafio-3-mvbp-bucket.s3.amazonaws.com/imgBkgBaloes.png' imgHeight='40rem'/>
-      <section className={global.contentSection}>
+      <section className={`${global.contentSection} ${global.lastContentSection}`}>
         <FormInputs />
         <SideScroll />
       </section>

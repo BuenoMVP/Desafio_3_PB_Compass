@@ -33,13 +33,13 @@
 
 .section {
     position: relative;
-    padding-top: 10rem;
+    margin-top: 10rem;
 }
 
 .formBox {
     width: 100%;
     position: absolute;
     padding: 0 10rem;
-    top: -3rem;
+    top: -13rem;
     z-index: 1;
 }

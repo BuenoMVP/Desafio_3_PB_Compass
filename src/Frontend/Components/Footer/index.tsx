@@ -13,8 +13,8 @@ const Footer = () => {
             <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Logo_Wite.svg" alt="logo image" />
             <br/>
             <span className='cursiveText textSizeSmall'>Need any help?</span>
-            <p>
-                <span className='boldText'>Call Us: </span>
+            <p className='boldText'>
+                <span>Call Us: </span>
                 <span className='redText'>(888)1234 5678</span>
             </p>
             <br/>

@@ -27,7 +27,7 @@ const FormInputs = () => {
                 icon={<PiCalendarBlank size={iconSize} color={iconColor} />} 
                 title='When' 
                 placeHolder='Date' 
-                typeOperation='text'
+                typeOperation='date'
             />
             <InputIconText 
                 icon={<PiUsers size={iconSize} color={iconColor} />} 
@@ -35,7 +35,7 @@ const FormInputs = () => {
                 placeHolder='Guests' 
                 typeOperation='text'
             />
-            <FormButton title='Search' />
+            <FormButton title='Search' goTo='' />
         </form>
     </section>
   )

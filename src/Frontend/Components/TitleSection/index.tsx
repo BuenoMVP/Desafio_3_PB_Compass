@@ -13,7 +13,7 @@ const TitleSection = (props: Props) => {
             <span className='cursiveText redText boldText'>{props.cursive}</span>
             <div className={style.line}/>
         </div>
-        <p className='boldText'>{props.title}</p>
+        <p className='boldText blueText'>{props.title}</p>
     </section>
   )
 }

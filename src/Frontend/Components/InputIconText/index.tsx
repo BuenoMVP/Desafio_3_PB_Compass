@@ -4,7 +4,7 @@ import style from './style.module.css'
 const InputIconText = (props: InputIconTextProps) => {
   return (
     <section className={style.section}>
-        <span className="cursiveText">{props.title}</span>
+        <span className="cursiveText blueText">{props.title}</span>
         <div>
             <>{props.icon}</>
             <input 

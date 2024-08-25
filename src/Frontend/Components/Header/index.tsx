@@ -14,7 +14,7 @@ const Header = () => {
                 <li><HeaderButton title='Home' goTo='/'/></li>
                 <li><HeaderButton title='About' goTo='/'/></li>
                 <li><HeaderButton title='Tours' goTo='/Tuors'/></li>
-                <li><HeaderButton title='Destination' goTo='/'/></li>
+                <li><HeaderButton title='Destination' goTo='/View'/></li>
                 <li><HeaderButton title='Blog' goTo='/'/></li>
                 <li><HeaderButton title='Pages' goTo='/'/></li>
                 <li><HeaderButton title='Contact' goTo='/'/></li>

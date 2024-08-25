@@ -9,6 +9,8 @@
     "build": "tsup ./src/Backend"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.19.3",
+    "@splidejs/react-splide": "^0.7.12",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^22.4.1",

@@ -1,0 +1,45 @@
+.pageContent {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.imageText {
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    z-index: 1;
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 15%;
+
+    span {
+        font-size: 32px;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 56px;
+    }
+
+    p {
+        color: #fff;
+        font-size: 16px;
+    }
+}
+
+.section {
+    position: relative;
+    margin-top: 10rem;
+}
+
+.formBox {
+    width: 100%;
+    position: absolute;
+    padding: 0 10rem;
+    top: -13rem;
+    z-index: 1;
+}

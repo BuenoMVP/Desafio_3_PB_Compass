@@ -1,0 +1,11 @@
+.contentSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10rem;
+    gap: 5rem;
+}
+
+.lastContentSection {
+    margin-bottom: 5rem;
+}

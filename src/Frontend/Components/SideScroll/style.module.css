@@ -1,0 +1,12 @@
+.section {
+    background-color: aqua;
+    width: 100%;
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    background-color: red;
+    width: 100%;
+}

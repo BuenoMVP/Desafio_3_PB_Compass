@@ -1,0 +1,13 @@
+.section {
+    display: flex;
+    gap: .5rem;
+    color: #676D85;
+
+    input {
+        background-color: transparent;
+    }
+
+    input:hover {
+        cursor: pointer;
+    }
+}

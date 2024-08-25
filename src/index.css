@@ -1,16 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Salsa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-.logoTextFamily {
-  font-family: "Salsa", cursive;
+.cursiveText {
+  font-family: "Kaushan Script", cursive;
 }
 
-.cursiveTextFamily {
-  font-family: "Kaushan Script", cursive;
+.textSizeSmall {
+  font-size: 14px;
+}
+
+.redText {
+  color: #FC5056
+}
+
+.blueText {
+  color: #051036
+}
+
+.boldText{
+  font-weight: bold;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Work Sans", sans-serif;
 }

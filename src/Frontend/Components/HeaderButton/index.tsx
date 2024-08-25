@@ -1,14 +1,12 @@
+import { Link } from 'react-router-dom'
+import { HeaderButtonProps } from '../../Types/types'
 import styles from './style.module.css'
 
-interface Props {
-    title: string,
-}
-
-const HeaderButton = (props:Props) => {
+const HeaderButton = (props:HeaderButtonProps) => {
   return (
-    <button className={styles.button}>
+    <Link className={styles.button} to={props.goTo}>
         <p>{props.title}</p>
-    </button>
+    </Link>
   )
 }
 

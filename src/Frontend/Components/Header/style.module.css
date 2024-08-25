@@ -15,15 +15,6 @@
     border: none;
     background-color: transparent;
     gap: .5rem;
-
-    .logoText {
-        font-family:Georgia, 'Times New Roman', Times, serif;
-        font-size: 1.2rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
 }
 
 .button:hover {
@@ -34,6 +25,10 @@
     display: inherit;
     align-items: center;
     gap: 1rem;
+
+    img {
+        max-width: 6rem;
+    }
 }
 
 .ul {

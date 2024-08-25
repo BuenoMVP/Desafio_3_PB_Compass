@@ -1,0 +1,30 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 1rem;
+
+        span {
+            font-size: 24px;
+        }
+    }
+
+    p {
+        font-size: 40px;
+    }
+}
+
+.line {
+    max-width: 8rem;
+    height: 1px;
+    background-color: #A9AFBB;
+}

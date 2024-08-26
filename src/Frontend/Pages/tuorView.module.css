@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: start;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     gap: 3rem;
 
     .tuorBox {
@@ -35,4 +35,44 @@
         width: 25%;
         height: auto;
     }
+}
+
+.averageBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 15rem;
+    padding: 1rem;
+    background-color: #F7F8FA;
+}
+
+.averageScore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FD5056;
+    height: 80%;
+    width: 25%;
+    color: #fff;
+    gap: 5px;
+
+    p {
+        font-size: 56px;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+.averageGroup {
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    justify-content: space-between;
 }

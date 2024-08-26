@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Footer from '../Components/Footer'
 import FormButton from '../Components/FormButton'
 import Header from '../Components/Header'
@@ -8,9 +8,10 @@ import style from './tuorView.module.css'
 import AverageReviews from '../Components/AverageReviews'
 import { FaStar } from 'react-icons/fa'
 import api from '../Services/api'
+import StarReview from '../Components/StarReview'
 
 const TuorView = () => {
-  const [nota_service, setServices] = useState<number>(1)
+  const [nota_service, setService] = useState<number>(1)
   const [nota_location, setLocation] = useState<number>(1)
   const [nota_amenities, setAmenities] = useState<number>(1)
   const [nota_prices, setPrices] = useState<number>(1)
@@ -23,7 +24,7 @@ const TuorView = () => {
 
   const lat: number = -23.187049672867087
   const lng: number = -50.65637960242221
-  const avgScore: number = (nota_service + nota_location + nota_amenities + nota_prices + nota_confort + nota_food) / 6
+  const avgScore: number = Number(((nota_service + nota_location + nota_amenities + nota_prices + nota_confort + nota_food) / 6).toFixed(1))
   const iconSize: number = 20
   let avgQuality: string
 
@@ -35,8 +36,7 @@ const TuorView = () => {
     avgQuality = 'Medium'
   }
 
-  const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleForm = async () => {
 
     try {
       const newReview = {
@@ -55,7 +55,7 @@ const TuorView = () => {
       await api.post("/reviews", newReview)
       console.log('fez o stringify')
     } catch (err) {
-      console.log('Deu ruim no formulario: '+err)
+      console.error('Deu ruim no formulario: '+err)
     }
   }
   
@@ -97,8 +97,16 @@ const TuorView = () => {
 
             <form onSubmit={handleForm}>
               <h3>Add a review</h3>
+              <div className={style.starBox}>
+                <StarReview title='Services' setRate={setService}/>
+                <StarReview title='Locations' setRate={setLocation}/>
+                <StarReview title='Amenities' setRate={setAmenities}/>
+                <StarReview title='Prices' setRate={setPrices}/>
+                <StarReview title='Room comfort and quality' setRate={setConfort}/>
+                <StarReview title='Food' setRate={setFood}/>
+              </div>
               
-              <div>
+              <div className={style.inputBox}>
                 <input 
                   type="text" 
                   name='name'

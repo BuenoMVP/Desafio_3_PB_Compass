@@ -1,0 +1,20 @@
+.section {
+    width: 13rem;
+    height: auto;
+    padding: .2rem 0;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    div {
+        background-color: #D9D9D9;
+        width: 90%;
+        height: .5rem;
+        border-radius: 16px;
+    }
+}

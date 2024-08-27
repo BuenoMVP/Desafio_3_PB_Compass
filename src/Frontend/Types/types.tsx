@@ -26,9 +26,25 @@ interface MediaReviewProps {
     qtd_review: number
 }
 
+interface ReviewProps {
+    _id: string,
+    description: string,
+    email: string,
+    name: string,
+    date?: Date,
+    nota_service: number,
+    nota_location: number,
+    nota_amenities: number,
+    nota_prices: number,
+    nota_confort: number,
+    nota_food: number,
+    tuorID: string
+}
+
 export type { 
     HeaderButtonProps, 
     InputIconTextProps, 
     CardTourProps, 
-    MediaReviewProps 
+    MediaReviewProps,
+    ReviewProps
 }

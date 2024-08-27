@@ -1,9 +1,15 @@
-import { HeaderButtonProps } from '../../Types/types'
 import style from './style.module.css'
 
-const FormButton = (props: HeaderButtonProps) => {
+type button = 'button' | 'submit' | 'reset'
+
+interface Props {
+  title: string,
+  type: button
+}
+
+const FormButton = (props: Props) => {
   return (
-    <button className={style.button}>
+    <button type={props.type} className={style.button}>
         {props.title}
     </button>
   )

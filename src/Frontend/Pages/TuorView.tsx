@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Footer from '../Components/Footer'
 import FormButton from '../Components/FormButton'
 import Header from '../Components/Header'
@@ -9,8 +9,11 @@ import AverageReviews from '../Components/AverageReviews'
 import { FaStar } from 'react-icons/fa'
 import api from '../Services/api'
 import StarReview from '../Components/StarReview'
+// import ShowReviews from '../Components/ShowReview'
+import { ReviewProps } from '../Types/types'
 
 const TuorView = () => {
+  const [reviews, setReviews] = useState<ReviewProps[]>([])
   const [nota_service, setService] = useState<number>(1)
   const [nota_location, setLocation] = useState<number>(1)
   const [nota_amenities, setAmenities] = useState<number>(1)
@@ -35,6 +38,22 @@ const TuorView = () => {
   }else{
     avgQuality = 'Medium'
   }
+
+  const fetchReviews = async () => {
+    try {
+      const response = await api.get<ReviewProps[]>("/reviews")
+      console.log(response)
+      setReviews(Array.isArray(response.data) ? response.data : [])
+      console.log(reviews)
+    } catch (err) {
+      console.error("Erro to find reviews: "+err)
+      setReviews([])
+    }
+  }
+  
+  useEffect(() => {
+    fetchReviews()
+  }, [])
 
   const handleForm = async () => {
 
@@ -65,36 +84,72 @@ const TuorView = () => {
         <section className={`${global.contentSection} ${global.lastContentSection} ${style.section}`}>
           <aside className={style.tuorBox}>
             Informaçoes do tuor
-            <h2 className={`blueText`}>Overview</h2>
-            <span>Istanbul, the vibrant and historic city straddling the continents of Europe and Asia, 
-              offers an enchanting blend of cultures, sights, and experiences that captivate every traveler’s heart.
-               As Turkey’s cultural and economic hub. Instabul seamlesly fuses its rich heritage with modernity, 
-               creating an unforgettable journey for visitors.</span>
 
-            <h2 className={`blueText`}>Map</h2>
-            <MapComponent lat={lat} lng={lng}/>
-
-            <h2 className={`blueText`}>Average Reviews</h2>
-            <div className={style.averageBox}>
-              <div className={style.averageScore}>
-                <p className='boldText'>{avgScore}</p>
-                <span>
-                  <FaStar color='#fff' size={iconSize}/>
-                  {avgQuality}
-                </span>
-              </div>
-              <div className={style.averageGroup}>
-                <AverageReviews title='Services' score={nota_service}/>
-                <AverageReviews title='Locations' score={nota_location}/>
-                <AverageReviews title='Ameneties' score={nota_amenities}/>
-              </div>
-              <div className={style.averageGroup}>
-                <AverageReviews title='Prices' score={nota_prices}/>
-                <AverageReviews title='Food' score={nota_food}/>
-                <AverageReviews title='Room confort and quality' score={nota_confort}/>
-              </div>
+            <div className={style.tuorGroup}>
+              <h2 className={`blueText`}>Overview</h2>
+              <span>
+                Istanbul, the vibrant and historic city straddling the continents of Europe and Asia, 
+                offers an enchanting blend of cultures, sights, and experiences that captivate every traveler’s heart.
+                As Turkey’s cultural and economic hub. Instabul seamlesly fuses its rich heritage with modernity, 
+                creating an unforgettable journey for visitors.
+              </span>
             </div>
 
+            <div className={style.tuorGroup}>
+              <h2 className={`blueText`}>Map</h2>
+              <MapComponent lat={lat} lng={lng}/>
+            </div>
+
+            <div className={style.tuorGroup}>
+              <h2 className={`blueText`}>Average Reviews</h2>
+              <div className={style.averageBox}>
+                <div className={style.averageScore}>
+                  <p className='boldText'>{avgScore}</p>
+                  <span>
+                    <FaStar color='#fff' size={iconSize}/>
+                    {avgQuality}
+                  </span>
+                </div>
+                <div className={style.averageGroup}>
+                  <AverageReviews title='Services' score={nota_service}/>
+                  <AverageReviews title='Locations' score={nota_location}/>
+                  <AverageReviews title='Ameneties' score={nota_amenities}/>
+                </div>
+                <div className={style.averageGroup}>
+                  <AverageReviews title='Prices' score={nota_prices}/>
+                  <AverageReviews title='Food' score={nota_food}/>
+                  <AverageReviews title='Room confort and quality' score={nota_confort}/>
+                </div>
+              </div>
+            </div>
+           
+            <div className={style.tuorGroup}>
+              <h3>Showing {reviews.length} review</h3>
+              {/* {console.log('reviews')} */}
+               {/*<ShowReviews 
+                  key={reviews[4]._id}
+                  name={reviews[4].name}
+                  review={reviews[4].description}
+                  date={reviews[4].date}
+                  avgReview={5}
+                  qtdReview={10}
+                />
+                <ShowReviews 
+                  key={reviews[1]._id}
+                  name={reviews[1].name}
+                  review={reviews[1].description}
+                  avgReview={5}
+                  qtdReview={10}
+                />
+                <ShowReviews 
+                  key={reviews[2]._id}
+                  name={reviews[2].name}
+                  review={reviews[2].description}
+                  avgReview={5}
+                  qtdReview={10}
+                /> */}
+            </div>
+            
             <form onSubmit={handleForm}>
               <h3>Add a review</h3>
               <div className={style.starBox}>

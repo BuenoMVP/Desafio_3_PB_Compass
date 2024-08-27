@@ -9,9 +9,9 @@ const categoriesController = {
                 categorie: req.body.categorie
             }
 
-            const obj = await schemaCategories.create(newCategorie)
+            const objCategorie = await schemaCategories.create(newCategorie)
             
-            res.status(201).json({obj, msg: 'Categorie created!'})
+            res.status(201).json({objCategorie, msg: 'Categorie created!'})
             
         } catch (err) {
             res.status(400).json({"Error to POST Categories": err})
@@ -19,9 +19,9 @@ const categoriesController = {
     },
     getAllCategories: async (req: Request, res: Response) => {
         try {
-            const obj = await schemaCategories.find()
+            const objCategorie = await schemaCategories.find()
 
-            res.status(200).json({obj})
+            res.status(200).send(objCategorie)
         } catch (err) {
             res.status(400).json({"Error to GET Categories": err})
         }
@@ -30,12 +30,12 @@ const categoriesController = {
         try {
             const { id } = req.params
 
-            const obj = await schemaCategories.findOneAndDelete({_id: id})
+            const objCategorie = await schemaCategories.findOneAndDelete({_id: id})
 
-            if(!obj)
+            if(!objCategorie)
                 res.status(404).json({err: "Categorie not found."})
 
-            res.status(201).json({obj, msg: 'Categorie deleted!'})
+            res.status(201).json({objCategorie, msg: 'Categorie deleted!'})
             
         } catch (err) {
             res.status(400).json({"Error to DELETE Categories": err})
@@ -48,12 +48,12 @@ const categoriesController = {
                     categorie: req.body.categorie
             } 
 
-            const obj = await schemaCategories.findByIdAndUpdate(id, updateCategorie)
+            const objCategorie = await schemaCategories.findByIdAndUpdate(id, updateCategorie)
 
-            if(!obj)
+            if(!objCategorie)
                 res.status(404).json({err: "Categorie not found."})
             
-            res.status(201).json({obj, msg: 'Categorie updated!'})
+            res.status(201).json({objCategorie, msg: 'Categorie updated!'})
             
         } catch (err) {
             res.status(400).json({"Error to UPDATE Categories": err})

@@ -30,7 +30,7 @@ const reviewsController = {
         try {
             const objReview = await schemaReviews.find()
 
-            res.status(200).json({objReview})
+            res.status(200).send(objReview)
         } catch (err) {
             res.status(400).json({"Error to GET reviews": err})
         }

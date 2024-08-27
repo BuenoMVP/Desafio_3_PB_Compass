@@ -7,6 +7,7 @@ const tuorsController = {
         try {
             const newTuor: tuorsProps = {
                 title: req.body.title,
+                overview: req.body.overview,
                 categories: req.body.categories,
                 location: req.body.location,
                 price_person: req.body.price_person,
@@ -15,9 +16,9 @@ const tuorsController = {
                 min_age: req.body.min_age
             }
 
-            const obj = await schemaTuors.create(newTuor)
+            const objTuor = await schemaTuors.create(newTuor)
             
-            res.status(201).json({obj, msg: 'Tuor created!'})
+            res.status(201).json({objTuor, msg: 'Tuor created!'})
             
         } catch (err) {
             res.status(400).json({"Error to POST Tuors": err})
@@ -25,9 +26,9 @@ const tuorsController = {
     },
     getAllTuors: async (req: Request, res: Response) => {
         try {
-            const obj = await schemaTuors.find()
+            const objTuor = await schemaTuors.find()
 
-            res.status(200).json({obj})
+            res.status(200).send(objTuor)
         } catch (err) {
             res.status(400).json({"Error to GET Tuors": err})
         }
@@ -36,12 +37,12 @@ const tuorsController = {
         try {
             const { id } = req.params
 
-            const obj = await schemaTuors.findOneAndDelete({_id: id})
+            const objTuor = await schemaTuors.findOneAndDelete({_id: id})
 
-            if(!obj)
+            if(!objTuor)
                 res.status(404).json({err: "Tuor not found."})
 
-            res.status(201).json({obj, msg: 'Tuor deleted!'})
+            res.status(201).json({objTuor, msg: 'Tuor deleted!'})
             
         } catch (err) {
             res.status(400).json({"Error to DELETE Tuors": err})
@@ -52,6 +53,7 @@ const tuorsController = {
             const { id } = req.params
             const updateTuor: tuorsProps = {
                 title: req.body.title,
+                overview: req.body.overview,
                 categories: req.body.categories,
                 location: req.body.location,
                 price_person: req.body.price_person,
@@ -60,12 +62,12 @@ const tuorsController = {
                 min_age: req.body.min_age
             } 
 
-            const obj = await schemaTuors.findByIdAndUpdate(id, updateTuor)
+            const objTuor = await schemaTuors.findByIdAndUpdate(id, updateTuor)
 
-            if(!obj)
+            if(!objTuor)
                 res.status(404).json({err: "Tuor not found."})
             
-            res.status(201).json({obj, msg: 'Tuor updated!'})
+            res.status(201).json({objTuor, msg: 'Tuor updated!'})
             
         } catch (err) {
             res.status(400).json({"Error to UPDATE Tuors": err})

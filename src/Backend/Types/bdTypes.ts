@@ -18,13 +18,13 @@ interface reviewsProps {
 
 interface tuorsProps {
     title: string,
-    categories: categoriesProps[],
+    overview: string,
+    categories: string,
     location: string,
     price_person: number,
-    time: string,
+    time: number,
     max_person: number,
-    min_age: number,
-    reviews?: string[]
+    min_age: number
 }
 
 export type { categoriesProps, tuorsProps, reviewsProps }

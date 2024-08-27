@@ -6,11 +6,14 @@ const tuorsSchema = new Schema<tuorsProps>({
         type: String,
         required: true
     },
-    categories: [
-        {
-            categorie: String
-        }
-    ],
+    overview: {
+        type: String,
+        required: true
+    },
+    categories: {
+        type: String,
+        required: true
+    },
     location: {
         type: String,
         required: true
@@ -20,7 +23,7 @@ const tuorsSchema = new Schema<tuorsProps>({
         required: true
     },
     time: {
-        type: String,
+        type: Number,
         required: true
     },
     max_person: {
@@ -30,11 +33,7 @@ const tuorsSchema = new Schema<tuorsProps>({
     min_age: {
         type: Number,
         required: true
-    },
-    reviews: [{
-        type: String,
-        required: false
-    }]
+    }
 })
 
 const schemaTuors = model('Tuors', tuorsSchema)

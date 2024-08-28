@@ -92,6 +92,13 @@
     }
 }
 
+#experiencesBox {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    width: 100%;
+}
+
 #sectionTravelers {
     display: flex;
     flex-direction: row;

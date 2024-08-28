@@ -10,6 +10,7 @@ import StatsHome from '../Components/StatsHome'
 import { PiQuotes } from 'react-icons/pi'
 import DestinationImage from '../Components/DestinationsImage'
 import TravelGuides from '../Components/TravelGuides'
+import ChooseUsComponent from '../Components/ChooseUsComponent'
 
 const Home = () => {
   return (
@@ -64,7 +65,12 @@ const Home = () => {
       </section>
 
       <section className={`${global.contentSection} ${global.lastContentSection} ${style.sectionExperiences}`}>
-      <TitleSection cursive='Browse By Category' title='Pick a Tuor Type'/>
+        <div id={style.experiencesBox}>
+          <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/PhotoWatch.png" alt="photoWatch" />
+          <ChooseUsComponent />
+        </div>
+
+        <TitleSection cursive='Browse By Category' title='Pick a Tuor Type'/>
 
       </section>
 

@@ -9,6 +9,7 @@ import global from './global.module.css'
 import StatsHome from '../Components/StatsHome'
 import { PiQuotes } from 'react-icons/pi'
 import DestinationImage from '../Components/DestinationsImage'
+import TravelGuides from '../Components/TravelGuides'
 
 const Home = () => {
   return (
@@ -86,7 +87,16 @@ const Home = () => {
       </section>
 
       <section className={`${global.contentSection} ${global.lastContentSection} ${style.sectionGuide}`}>
-      <TitleSection cursive='Updates' title='Latest Travel Guide'/>
+        
+        <TitleSection cursive='Updates' title='Latest Travel Guide'/>
+        <div className={style.guideBox}>
+          <TravelGuides />
+          <TravelGuides />
+        </div>
+        <div className={style.guideBox}>
+          <TravelGuides />
+          <TravelGuides />
+        </div>
 
       </section>
       <Footer />

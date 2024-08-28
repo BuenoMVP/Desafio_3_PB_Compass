@@ -65,6 +65,7 @@
     display: flex;
     gap: 30px;
     width: 100%;
+    justify-content: center;
 
     aside {
         display: inherit;
@@ -130,4 +131,11 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+}
+
+.guideBox {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10rem;
 }

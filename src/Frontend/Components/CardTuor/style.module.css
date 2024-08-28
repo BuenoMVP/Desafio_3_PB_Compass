@@ -1,12 +1,13 @@
 .button {
     display: flex;
     flex-direction: column;
-    height: 20rem;
-    width: 15rem;
+    height: 25rem;
+    width: 20rem;
     background-color: #F7F8FA;
     border: none;
     transition: .2s;
     color: #A9AFBB;
+    position: relative;
 
     img {
         width: 100%;
@@ -65,4 +66,17 @@
 #priceBox {
     border-top: 1px solid #A9AFBB;
     text-align: end;
+}
+
+.like {
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50px;
 }

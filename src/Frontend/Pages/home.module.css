@@ -55,3 +55,44 @@
 .bkgColorGray {
     background-color: #F7F8FA;
 }
+
+#sectionTravelers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 10rem;
+
+    img {
+        height: 30rem;
+        width: 24rem;
+    }
+
+    aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 25rem;
+        height: 100%;
+    }
+}
+
+.travelersComments {
+    justify-content: start;
+    align-items: start;
+    gap: 2rem;
+
+    p {
+        text-align: center;
+    }
+}
+
+.commentsBox {
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}

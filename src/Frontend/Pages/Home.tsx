@@ -7,6 +7,7 @@ import TitleSection from '../Components/TitleSection'
 import style from './home.module.css'
 import global from './global.module.css'
 import StatsHome from '../Components/StatsHome'
+import { PiQuotes } from 'react-icons/pi'
 
 const Home = () => {
   return (
@@ -50,12 +51,21 @@ const Home = () => {
 
       </section>
 
-      <section className={`${global.contentSection} ${global.lastContentSection} ${style.sectionTravelers} ${style.bkgColorGray}`}>
+      <section className={`${global.contentSection} ${global.lastContentSection} ${style.bkgColorGray}`} id={style.sectionTravelers}>
         <aside>
-
+          <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/PhotoDump.png" alt="photoDump" />
         </aside>
-        <aside>
+        <aside className={style.travelersComments}>
           <TitleSection cursive='Testimonials' title='What Travelers Say'/>
+          <div className={style.commentsBox}>
+            <PiQuotes color='#FC5056' size={32} />
+            <p className='boldText'>
+              “The UI designs he crafted are top-notch, 
+              and the design system he integrated allows for straight forward fixes 
+              and bulk updates throughout almost every area of the app.” 
+            </p>
+            <span className='greyText'>-By Molie Rosa, Photographer</span>
+          </div>
         </aside>
       </section>
 

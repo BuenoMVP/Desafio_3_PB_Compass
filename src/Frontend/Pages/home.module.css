@@ -14,7 +14,7 @@
     position: absolute;
     left: 30%;
     right: 30%;
-    top: 15%;
+    top: 7%;
 
     span {
         font-size: 32px;
@@ -33,14 +33,14 @@
 
 .sectionTuors {
     position: relative;
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .formBox {
     width: 100%;
     position: absolute;
     padding: 0 10rem;
-    top: -13rem;
+    top: -8rem;
     z-index: 1;
 }
 
@@ -54,6 +54,41 @@
 
 .bkgColorGray {
     background-color: #F7F8FA;
+}
+
+.sectionAttractions {
+    display: flex;
+    flex-direction: column;
+}
+
+.attractionBox {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+
+    aside {
+        display: inherit;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .left {
+        .top {
+            display: inherit;
+            gap: 2rem;
+        }
+    
+        .bottom {
+            display: inherit;
+            gap: 2rem;
+            grid-area: bottom;
+        }
+    }
+
+
+    .right {
+        grid-area: right;
+    }
 }
 
 #sectionTravelers {

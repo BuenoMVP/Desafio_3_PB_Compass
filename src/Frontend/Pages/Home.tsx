@@ -8,6 +8,7 @@ import style from './home.module.css'
 import global from './global.module.css'
 import StatsHome from '../Components/StatsHome'
 import { PiQuotes } from 'react-icons/pi'
+import DestinationImage from '../Components/DestinationsImage'
 
 const Home = () => {
   return (
@@ -42,7 +43,22 @@ const Home = () => {
 
         <TitleSection cursive='Destination' title='Top Attractions Destinations'/>
 
-
+        <div className={style.attractionBox}>
+          <aside className={style.left}>
+            <section className={style.top}>
+              <DestinationImage  width='270px' height='198px'/>
+              <DestinationImage  width='270px' height='198px'/>
+              <DestinationImage  width='270px' height='198px'/>
+            </section>
+            <section className={style.bottom}>
+              <DestinationImage  width='368px' height='198px'/>
+              <DestinationImage  width='474px' height='198px'/>
+            </section>
+          </aside>
+          <aside className={style.righ}>
+            <DestinationImage  width='270px' height='428px'/>
+          </aside>
+        </div>
 
       </section>
 

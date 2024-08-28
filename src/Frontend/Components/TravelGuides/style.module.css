@@ -1,0 +1,22 @@
+.section {
+    display: flex;
+    gap: 1rem;
+    width: 25rem;
+
+    img {
+        width: 172px;
+        height: 136px;
+    }
+
+    div {
+        display: inherit;
+        flex-direction: column;
+        justify-content: center;
+        gap: .5rem;
+
+        section {
+            display: inherit;
+            gap: 3rem;
+        }
+    }
+}

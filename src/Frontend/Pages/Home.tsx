@@ -7,6 +7,10 @@ import TitleSection from '../Components/TitleSection'
 import style from './home.module.css'
 import global from './global.module.css'
 import StatsHome from '../Components/StatsHome'
+import { PiQuotes } from 'react-icons/pi'
+import DestinationImage from '../Components/DestinationsImage'
+import TravelGuides from '../Components/TravelGuides'
+import ChooseUsComponent from '../Components/ChooseUsComponent'
 
 const Home = () => {
   return (
@@ -41,26 +45,64 @@ const Home = () => {
 
         <TitleSection cursive='Destination' title='Top Attractions Destinations'/>
 
-
+        <div className={style.attractionBox}>
+          <aside className={style.left}>
+            <section className={style.top}>
+              <DestinationImage  width='270px' height='198px'/>
+              <DestinationImage  width='270px' height='198px'/>
+              <DestinationImage  width='270px' height='198px'/>
+            </section>
+            <section className={style.bottom}>
+              <DestinationImage  width='368px' height='198px'/>
+              <DestinationImage  width='474px' height='198px'/>
+            </section>
+          </aside>
+          <aside className={style.righ}>
+            <DestinationImage  width='270px' height='428px'/>
+          </aside>
+        </div>
 
       </section>
 
       <section className={`${global.contentSection} ${global.lastContentSection} ${style.sectionExperiences}`}>
-      <TitleSection cursive='Browse By Category' title='Pick a Tuor Type'/>
+        <div id={style.experiencesBox}>
+          <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/PhotoWatch.png" alt="photoWatch" />
+          <ChooseUsComponent />
+        </div>
+
+        <TitleSection cursive='Browse By Category' title='Pick a Tuor Type'/>
 
       </section>
 
-      <section className={`${global.contentSection} ${global.lastContentSection} ${style.sectionTravelers} ${style.bkgColorGray}`}>
+      <section className={`${global.contentSection} ${global.lastContentSection} ${style.bkgColorGray}`} id={style.sectionTravelers}>
         <aside>
-
+          <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/PhotoDump.png" alt="photoDump" />
         </aside>
-        <aside>
+        <aside className={style.travelersComments}>
           <TitleSection cursive='Testimonials' title='What Travelers Say'/>
+          <div className={style.commentsBox}>
+            <PiQuotes color='#FC5056' size={32} />
+            <p className='boldText'>
+              “The UI designs he crafted are top-notch, 
+              and the design system he integrated allows for straight forward fixes 
+              and bulk updates throughout almost every area of the app.” 
+            </p>
+            <span className='greyText'>-By Molie Rosa, Photographer</span>
+          </div>
         </aside>
       </section>
 
       <section className={`${global.contentSection} ${global.lastContentSection} ${style.sectionGuide}`}>
-      <TitleSection cursive='Updates' title='Latest Travel Guide'/>
+        
+        <TitleSection cursive='Updates' title='Latest Travel Guide'/>
+        <div className={style.guideBox}>
+          <TravelGuides />
+          <TravelGuides />
+        </div>
+        <div className={style.guideBox}>
+          <TravelGuides />
+          <TravelGuides />
+        </div>
 
       </section>
       <Footer />

@@ -1,0 +1,67 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    gap: 1rem;
+
+    p {
+        font-size: 40px;
+    }
+
+    article {
+        font-size: 16px;
+    }
+
+    .title {
+        display: inherit;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        font-size: 24px;
+
+        p {
+            font-size: 24px;
+        }
+
+        span {
+            display: flex;
+            flex-direction: row;
+        }
+
+        div {
+            height: 1px;
+            width: 10rem;
+            background-color: #D9D9D9;
+        }
+    }
+
+    .box {
+        display: inherit;
+        flex-direction: row;
+        gap: 2rem;
+
+        #check {
+            display: inherit;
+            flex-direction: row;
+            width: 15rem;
+            gap: .5rem;
+        }
+    }
+
+    button {
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        cursor: pointer;
+        border: 1px solid #A9AFBB;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        width: 10rem;
+        height: 3rem;
+    }
+
+    button:hover {
+        transform: scale(1.01);
+    }
+}

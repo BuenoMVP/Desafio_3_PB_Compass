@@ -14,7 +14,7 @@
     position: absolute;
     left: 30%;
     right: 30%;
-    top: 15%;
+    top: 7%;
 
     span {
         font-size: 32px;
@@ -33,14 +33,14 @@
 
 .sectionTuors {
     position: relative;
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .formBox {
     width: 100%;
     position: absolute;
     padding: 0 10rem;
-    top: -13rem;
+    top: -8rem;
     z-index: 1;
 }
 
@@ -54,4 +54,95 @@
 
 .bkgColorGray {
     background-color: #F7F8FA;
+}
+
+.sectionAttractions {
+    display: flex;
+    flex-direction: column;
+}
+
+.attractionBox {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+
+    aside {
+        display: inherit;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .left {
+        .top {
+            display: inherit;
+            gap: 2rem;
+        }
+    
+        .bottom {
+            display: inherit;
+            gap: 2rem;
+            grid-area: bottom;
+        }
+    }
+
+
+    .right {
+        grid-area: right;
+    }
+}
+
+#experiencesBox {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    width: 100%;
+}
+
+#sectionTravelers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 10rem;
+
+    img {
+        height: 30rem;
+        width: 24rem;
+    }
+
+    aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 25rem;
+        height: 100%;
+    }
+}
+
+.travelersComments {
+    justify-content: start;
+    align-items: start;
+    gap: 2rem;
+
+    p {
+        text-align: center;
+    }
+}
+
+.commentsBox {
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.guideBox {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10rem;
 }

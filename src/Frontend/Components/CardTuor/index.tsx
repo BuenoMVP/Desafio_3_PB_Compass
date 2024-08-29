@@ -1,4 +1,4 @@
-import { CiClock2 } from 'react-icons/ci'
+import { CiClock2, CiHeart } from 'react-icons/ci'
 import { CardTourProps } from '../../Types/types'
 import MediaReview from '../MediaReview'
 import style from './style.module.css'
@@ -23,6 +23,9 @@ const CardTuor = (props: CardTourProps) => {
                     <span className="cursiveText" id={style.priceText}>${props.price}</span>
                 </div>
             </div>
+        </div>
+        <div className={style.like}>
+            <CiHeart color='#091142' size={20}/>
         </div>
     </button>
   )

@@ -25,10 +25,28 @@ const tuorsController = {
         }
     },
     getAllTuors: async (req: Request, res: Response) => {
+        const limit:number = Number(req.query.limit) | 9
+        const offset:number = Number(req.query.offset) | 0
+        
         try {
-            const objTuor = await schemaTuors.find()
+            const objTuor = await schemaTuors.find().skip(offset).limit(limit)
+            const total:number = await schemaTuors.countDocuments()
+            const url:string = req.baseUrl
 
-            res.status(200).send(objTuor)
+            const next:number = offset + limit
+            const nextURL:string = next < total ? `${url}?limit=${limit}&offset=&${next}` : 'null'
+
+            const previous:number = offset - limit < 0 ? -1 : offset - limit
+            const previousURL: string = previous != -1 ? `${url}?limit=${limit}&offset=&${previous}` : 'null'
+
+            res.status(200).send({
+                nextURL,
+                previousURL,
+                limit,
+                offset,
+                total,
+                objTuor
+            })
         } catch (err) {
             res.status(400).json({"Error to GET Tuors": err})
         }

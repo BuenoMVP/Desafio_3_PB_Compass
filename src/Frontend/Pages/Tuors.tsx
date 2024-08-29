@@ -6,8 +6,14 @@ import style from './tuors.module.css'
 import FormInputs from '../Components/FormInputs'
 import { LuArrowDownAZ } from 'react-icons/lu'
 import FiltersComponent from '../Components/FiltersComponent'
+import { useEffect, useState } from 'react'
+import { tuorsProps } from '../../Backend/Types/bdTypes'
+import api from '../Services/api'
+import CardTuor from '../Components/CardTuor'
 
 const Tuor = () => {
+  const [tuors, setTuors] = useState<tuorsProps[]>([])!
+
   const iconSize: number = 20
 
   const vetCategories: string[] = [
@@ -30,6 +36,22 @@ const Tuor = () => {
     '1 Stars & Up'
   ]
 
+  const fetchTuors = async () => {
+    try {
+      const response = await api.get<tuorsProps[]>("/tuors")
+      console.log(response)
+      setTuors(Array.isArray(response.data) ? response.data : [])
+      console.log(tuors)
+    } catch (err) {
+      console.error("Erro to find reviews: "+err)
+      setTuors([])
+    }
+  }
+  
+  useEffect(() => {
+    fetchTuors()
+  }, [])
+
   return (
     <main className={style.pageContent}>
         <Header />
@@ -50,7 +72,7 @@ const Tuor = () => {
             </div>
             <div className={style.tuors}>
               <header>
-                <p>15 tuors</p>
+                <p>{tuors.length} tuors</p>
                 <span>
                   <p>Sort by </p>
                   <div id={style.orderBox}>
@@ -66,7 +88,23 @@ const Tuor = () => {
                   </select>
                 </span>
               </header>
-              tuors
+              <section className={style.cards}>
+                {tuors!.map((tuor, index) => (
+                  <div 
+                  className={style.cardTuorBox}
+                    key={index}
+                  >
+                    <CardTuor 
+                      location={tuor.location}
+                      title={tuor.title}
+                      review={10}
+                      qtd_review={tuor.max_person}
+                      price={tuor.price_person}
+                      time={tuor.time}
+                    />
+                  </div>
+                ))}
+              </section>
             </div>
           </div>
         </section>

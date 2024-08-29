@@ -58,7 +58,7 @@
 .tuors {
     display: flex;
     flex-direction: column;
-    background-color: orange;
+    border: 1px solid orange;
     width: 83%;
 
     header {
@@ -71,6 +71,20 @@
             display: inherit;
         }
     }
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+    padding-top: 1rem;
+    justify-items: center;
+}
+
+.cardTuorBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #orderBox {

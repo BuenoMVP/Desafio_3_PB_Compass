@@ -9,11 +9,11 @@ import AverageReviews from '../Components/AverageReviews'
 import { FaStar } from 'react-icons/fa'
 import api from '../Services/api'
 import StarReview from '../Components/StarReview'
-// import ShowReviews from '../Components/ShowReview'
+import ShowReviews from '../Components/ShowReview'
 import { ReviewProps } from '../Types/types'
 
 const TuorView = () => {
-  const [reviews, setReviews] = useState<ReviewProps[]>([])
+  const [reviews, setReviews] = useState<ReviewProps[]>([])!
   const [nota_service, setService] = useState<number>(1)
   const [nota_location, setLocation] = useState<number>(1)
   const [nota_amenities, setAmenities] = useState<number>(1)
@@ -125,29 +125,18 @@ const TuorView = () => {
            
             <div className={style.tuorGroup}>
               <h3>Showing {reviews.length} review</h3>
-              {/* {console.log('reviews')} */}
-               {/*<ShowReviews 
-                  key={reviews[4]._id}
-                  name={reviews[4].name}
-                  review={reviews[4].description}
-                  date={reviews[4].date}
-                  avgReview={5}
-                  qtdReview={10}
-                />
-                <ShowReviews 
-                  key={reviews[1]._id}
-                  name={reviews[1].name}
-                  review={reviews[1].description}
-                  avgReview={5}
-                  qtdReview={10}
-                />
-                <ShowReviews 
-                  key={reviews[2]._id}
-                  name={reviews[2].name}
-                  review={reviews[2].description}
-                  avgReview={5}
-                  qtdReview={10}
-                /> */}
+              {reviews.map((review, index) => (
+                <div key={index}>
+                  <ShowReviews 
+                    key={review._id}
+                    name={review.name}
+                    review={review.description}
+                    date={review.date}
+                    avgReview={5}
+                    qtdReview={10}
+                  />
+                </div>
+              ))}
             </div>
             
             <form onSubmit={handleForm}>

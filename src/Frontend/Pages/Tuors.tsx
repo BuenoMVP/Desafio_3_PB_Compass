@@ -11,8 +11,17 @@ import { tuorsProps } from '../../Backend/Types/bdTypes'
 import api from '../Services/api'
 import CardTuor from '../Components/CardTuor'
 
+interface RequestProps {
+  nextURL: string,
+  previousURL: string,
+  limit: number,
+  offset: number,
+  total: number,
+  objTuor?: tuorsProps[]
+}
+
 const Tuor = () => {
-  const [tuors, setTuors] = useState<tuorsProps[]>([])!
+  const [tuors, setTuors] = useState<RequestProps>()
 
   const iconSize: number = 20
 
@@ -38,13 +47,12 @@ const Tuor = () => {
 
   const fetchTuors = async () => {
     try {
-      const response = await api.get<tuorsProps[]>("/tuors")
-      console.log(response)
-      setTuors(Array.isArray(response.data) ? response.data : [])
+      const response = await api.get<RequestProps>("/tuors")
+      setTuors(response.data)
       console.log(tuors)
     } catch (err) {
       console.error("Erro to find reviews: "+err)
-      setTuors([])
+      setTuors(undefined)
     }
   }
   
@@ -72,7 +80,7 @@ const Tuor = () => {
             </div>
             <div className={style.tuors}>
               <header>
-                <p>{tuors.length} tuors</p>
+                <p>{tuors?.objTuor!.length} tuors</p>
                 <span>
                   <p>Sort by </p>
                   <div id={style.orderBox}>
@@ -89,9 +97,9 @@ const Tuor = () => {
                 </span>
               </header>
               <section className={style.cards}>
-                {tuors!.map((tuor, index) => (
+                {tuors?.objTuor!.map((tuor, index) => (
                   <div 
-                  className={style.cardTuorBox}
+                    className={style.cardTuorBox}
                     key={index}
                   >
                     <CardTuor 

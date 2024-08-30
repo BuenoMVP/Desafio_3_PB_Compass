@@ -111,6 +111,16 @@ const tuorsController = {
         } catch (err) {
             res.status(400).json({"Error to UPDATE Tuors": err})
         }
+    },
+    getTuorsById: async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params
+            const objTuor = await schemaTuors.findById(id).populate('reviews')
+
+            res.status(200).send(objTuor)
+        } catch (err) {
+            res.status(400).json({"Error to GET Tuor by ID": err})
+        }
     }
 }
 

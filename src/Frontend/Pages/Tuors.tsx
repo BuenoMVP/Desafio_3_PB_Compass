@@ -21,7 +21,10 @@ interface RequestProps {
 }
 
 const Tuor = () => {
-  const [info, setInfo] = useState<RequestProps>()
+  // const [nextURL, setNextURL] = useState<string>('null')
+  // const [previousURL, setPreviousURL] = useState<string>('null')
+
+  const [offset, setOffset] = useState<number>(0)
   const [tuors, setTuors] = useState<tuorsProps[]>([])
 
   const iconSize: number = 20
@@ -48,22 +51,25 @@ const Tuor = () => {
 
   const fetchTuors = async () => {
     try {
-      const response = await api.get<RequestProps>("/tuors?offset=18")
-      console.log(response)
-      setInfo(response.data)
-      console.log(info)
+      const response = await api.get<RequestProps>(`/tuors?offset=${offset}`)
+      console.log(response.data)
+      // setNextURL(response.data.nextURL)
+      // setPreviousURL(response.data.previousURL)
+      setOffset(response.data.offset)
       setTuors(response.data.objTuor!)
+      console.log('offset: '+offset)
       console.log(tuors)
-      console.log(tuors[1].reviews)
     } catch (err) {
       console.error("Erro to find reviews: "+err)
-      setInfo(undefined)
+      // setNextURL('null')
+      // setPreviousURL('null')
+      setOffset(0)
     }
   }
   
   useEffect(() => {
     fetchTuors()
-  }, [])
+  }, [offset])
 
   return (
     <main className={style.pageContent}>
@@ -110,14 +116,22 @@ const Tuor = () => {
                     <CardTuor 
                       location={tuor.location}
                       title={tuor.title}
-                      review={10}
-                      qtd_review={9}
+                      review={3.1}
+                      qtd_review={3.666}
                       price={tuor.price_person}
                       time={tuor.time}
                     />
                   </div>
                 ))}
               </section>
+              <footer>
+              <button onClick={() => setOffset(offset-9)}>
+                  anterior
+                </button>
+                <button onClick={() => setOffset(offset+9)}>
+                  proximo
+                </button>
+              </footer>
             </div>
           </div>
         </section>

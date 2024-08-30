@@ -42,6 +42,10 @@ const reviewsSchema = new Schema<reviewsProps>({
         type: Number,
         required: true
     },
+    nota_average: {
+        type: Number,
+        required: false
+    },
     tuorID: {
         type: String,
         required: true

@@ -13,6 +13,7 @@ interface reviewsProps {
     nota_prices: number,
     nota_confort: number,
     nota_food: number,
+    nota_average?: number,
     tuorID: string
 }
 
@@ -27,4 +28,16 @@ interface tuorsProps {
     min_age: number
 }
 
-export type { categoriesProps, tuorsProps, reviewsProps }
+interface averageProps {
+    avg_service?: number,
+    avg_location?: number,
+    avg_amenities?: number,
+    avg_prices?: number,
+    avg_confort?: number,
+    avg_food?: number,
+    avg_average?: number,
+    qtdReviews?: number,
+    tuorID?: string
+}
+
+export type { categoriesProps, tuorsProps, reviewsProps, averageProps }

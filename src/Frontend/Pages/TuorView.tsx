@@ -11,6 +11,7 @@ import api from '../Services/api'
 import StarReview from '../Components/StarReview'
 import ShowReviews from '../Components/ShowReview'
 import { ReviewProps } from '../Types/types'
+import CalcPrice from '../Components/CalcPrice'
 
 const TuorView = () => {
   const [reviews, setReviews] = useState<ReviewProps[]>([])!
@@ -176,7 +177,9 @@ const TuorView = () => {
 
           </aside>
           <aside className={style.priceBox}>
-            informações do preço
+            
+            <CalcPrice value={100}/>
+
           </aside>
         </section>
         <Footer />

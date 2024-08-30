@@ -12,8 +12,11 @@ import StarReview from '../Components/StarReview'
 import ShowReviews from '../Components/ShowReview'
 import { ReviewProps } from '../Types/types'
 import CalcPrice from '../Components/CalcPrice'
+import { useParams } from 'react-router-dom'
 
 const TuorView = () => {
+  const { id } = useParams()
+
   const [reviews, setReviews] = useState<ReviewProps[]>([])!
   const [nota_service, setService] = useState<number>(1)
   const [nota_location, setLocation] = useState<number>(1)
@@ -85,6 +88,7 @@ const TuorView = () => {
         <section className={`${global.contentSection} ${global.lastContentSection} ${style.section}`}>
           <aside className={style.tuorBox}>
             Informaçoes do tuor
+            <h1>{id}</h1>
 
             <div className={style.tuorGroup}>
               <h2 className={`blueText`}>Overview</h2>

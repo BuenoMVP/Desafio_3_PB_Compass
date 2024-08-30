@@ -21,7 +21,8 @@ interface RequestProps {
 }
 
 const Tuor = () => {
-  const [tuors, setTuors] = useState<RequestProps>()
+  const [info, setInfo] = useState<RequestProps>()
+  const [tuors, setTuors] = useState<tuorsProps[]>([])
 
   const iconSize: number = 20
 
@@ -47,12 +48,16 @@ const Tuor = () => {
 
   const fetchTuors = async () => {
     try {
-      const response = await api.get<RequestProps>("/tuors")
-      setTuors(response.data)
+      const response = await api.get<RequestProps>("/tuors?offset=18")
+      console.log(response)
+      setInfo(response.data)
+      console.log(info)
+      setTuors(response.data.objTuor!)
       console.log(tuors)
+      console.log(tuors[1].reviews)
     } catch (err) {
       console.error("Erro to find reviews: "+err)
-      setTuors(undefined)
+      setInfo(undefined)
     }
   }
   
@@ -80,7 +85,7 @@ const Tuor = () => {
             </div>
             <div className={style.tuors}>
               <header>
-                <p>{tuors?.objTuor!.length} tuors</p>
+                <p>{tuors.length} tuors</p>
                 <span>
                   <p>Sort by </p>
                   <div id={style.orderBox}>
@@ -97,7 +102,7 @@ const Tuor = () => {
                 </span>
               </header>
               <section className={style.cards}>
-                {tuors?.objTuor!.map((tuor, index) => (
+                {tuors.map((tuor, index) => (
                   <div 
                     className={style.cardTuorBox}
                     key={index}
@@ -106,7 +111,7 @@ const Tuor = () => {
                       location={tuor.location}
                       title={tuor.title}
                       review={10}
-                      qtd_review={tuor.max_person}
+                      qtd_review={9}
                       price={tuor.price_person}
                       time={tuor.time}
                     />

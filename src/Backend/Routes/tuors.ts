@@ -7,6 +7,10 @@ router.get('/', (req: Request, res: Response) => {
     tuorsController.getAllTuors(req, res)
 })
 
+router.get('/:id', (req: Request, res: Response) => {
+    tuorsController.getTuorsById(req, res)
+})
+
 router.post('/', (req: Request, res: Response) => {
     tuorsController.postTuors(req, res)
 })

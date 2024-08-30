@@ -4,9 +4,8 @@ import { Request, Response } from "express";
 import { averageProps} from "../Types/bdTypes";
 
 const averageController = {
-    postAverage: async (req: Request, res: Response) => {
+    postAverage: async (_tuorID: string) => {
         try {
-            const {_tuorID} = req.body
             let SUMservice: number = 0
             let SUMlocation: number = 0
             let SUMamenities: number = 0
@@ -56,7 +55,7 @@ const averageController = {
                     avg_food: SUMfood / length,
                     avg_average: SUMaverage / length,
                     qtdReviews: length,
-                    tuorID: req.body.tuorID
+                    tuorID: _tuorID
                 }
 
                 console.log(newAverage)
@@ -64,10 +63,12 @@ const averageController = {
 
             const objAverage = await schemaAverage.create(newAverage)
             
-            res.status(201).json({objAverage, msg: 'Average created!'})
+            console.log({objAverage, msg: 'Average created!'})
+
+            return objAverage._id.toString()
             
         } catch (err) {
-            res.status(400).json({"Error to POST Average": err})
+            console.log({"Error to POST Average": err})
         }
     },
     getAllAverage: async (req: Request, res: Response) => {

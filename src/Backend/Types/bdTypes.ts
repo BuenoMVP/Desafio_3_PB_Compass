@@ -25,7 +25,8 @@ interface tuorsProps {
     price_person: number,
     time: number,
     max_person: number,
-    min_age: number
+    min_age: number,
+    reviews?: string
 }
 
 interface averageProps {

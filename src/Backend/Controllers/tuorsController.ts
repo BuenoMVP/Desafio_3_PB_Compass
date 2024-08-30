@@ -1,11 +1,12 @@
 import schemaTuors from "../Models/Tuors";
 import { Request, Response } from "express";
 import { tuorsProps } from "../Types/bdTypes";
+import averageController from "./averageController";
 
 const tuorsController = {
     postTuors: async (req: Request, res: Response) => {
         try {
-            const newTuor: tuorsProps = {
+            let newTuor: tuorsProps = {
                 title: req.body.title,
                 overview: req.body.overview,
                 categories: req.body.categories,
@@ -17,8 +18,28 @@ const tuorsController = {
             }
 
             const objTuor = await schemaTuors.create(newTuor)
+
+            const _tuorID = objTuor._id
+
+            const _averageID = await averageController.postAverage(_tuorID.toString())
+
+            newTuor = {
+                title: req.body.title,
+                overview: req.body.overview,
+                categories: req.body.categories,
+                location: req.body.location,
+                price_person: req.body.price_person,
+                time: req.body.time,
+                max_person: req.body.max_person,
+                min_age: req.body.min_age,
+                reviews: _averageID
+            }
+
+            console.log(newTuor)
+
+            const newObjTuor = await schemaTuors.findOneAndUpdate(_tuorID, newTuor)
             
-            res.status(201).json({objTuor, msg: 'Tuor created!'})
+            res.status(201).json({newObjTuor, msg: 'Tuor created!'})
             
         } catch (err) {
             res.status(400).json({"Error to POST Tuors": err})
@@ -29,7 +50,7 @@ const tuorsController = {
         const offset:number = Number(req.query.offset) | 0
         
         try {
-            const objTuor = await schemaTuors.find().skip(offset).limit(limit)
+            const objTuor = await schemaTuors.find().skip(offset).limit(limit).populate('reviews')
             const total:number = await schemaTuors.countDocuments()
             const url:string = req.baseUrl
 

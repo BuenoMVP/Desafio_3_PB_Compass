@@ -35,8 +35,6 @@ const tuorsController = {
                 reviews: _averageID
             }
 
-            console.log(newTuor)
-
             const newObjTuor = await schemaTuors.findOneAndUpdate(_tuorID, newTuor)
             
             res.status(201).json({newObjTuor, msg: 'Tuor created!'})
@@ -115,7 +113,12 @@ const tuorsController = {
     getTuorsById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params
-            const objTuor = await schemaTuors.findById(id).populate('reviews')
+            const objTuor = await schemaTuors.findById(id).populate({
+                path: 'reviews',
+                populate: {
+                    path: 'allReviews'
+                }
+            })
 
             res.status(200).send(objTuor)
         } catch (err) {

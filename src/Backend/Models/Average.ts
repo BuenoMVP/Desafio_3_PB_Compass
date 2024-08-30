@@ -37,7 +37,12 @@ const averageSchema = new Schema<averageProps>({
     tuorID: {
         type: String,
         required: true
-    }
+    },
+    allReviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Reviews',
+        require: false
+    }]
 })
 
 const schemaAverage = model('Average', averageSchema)

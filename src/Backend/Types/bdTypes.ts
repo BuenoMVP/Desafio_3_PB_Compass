@@ -38,7 +38,8 @@ interface averageProps {
     avg_food?: number,
     avg_average?: number,
     qtdReviews?: number,
-    tuorID?: string
+    tuorID?: string,
+    allReviews?: string[]
 }
 
 export type { categoriesProps, tuorsProps, reviewsProps, averageProps }

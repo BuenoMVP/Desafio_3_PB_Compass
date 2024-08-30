@@ -13,11 +13,10 @@ const averageController = {
             let SUMconfort: number = 0
             let SUMfood: number = 0 
             let SUMaverage: number = 0
-
-            console.log('TuorID recebido: '+_tuorID)
+            let reviewsID: string[]
 
             const allReviews = await schemaReviews.find({tuorID: _tuorID})
-            console.log(allReviews)
+
             let newAverage: averageProps
 
             if (!allReviews || allReviews.length === 0) {
@@ -30,20 +29,21 @@ const averageController = {
                     avg_food: 0,
                     avg_average: 0, 
                     qtdReviews: 0,
-                    tuorID: _tuorID
+                    tuorID: _tuorID,
+                    allReviews: []
                 }
-                console.log('Average empty: '+ newAverage)
             } else {
                 const length: number = allReviews.length
 
-                allReviews.map((review) => {
+                allReviews.map((review, index) => {
                     SUMservice += review.nota_service
                     SUMlocation += review.nota_location
                     SUMamenities += review.nota_amenities
                     SUMprices += review.nota_prices
                     SUMconfort += review.nota_confort
                     SUMfood += review.nota_food 
-                    SUMaverage += review.nota_average! 
+                    SUMaverage += review.nota_average!
+                    reviewsID[index] = review._id.toString()
                 })
 
                 newAverage = {
@@ -55,15 +55,12 @@ const averageController = {
                     avg_food: SUMfood / length,
                     avg_average: SUMaverage / length,
                     qtdReviews: length,
-                    tuorID: _tuorID
+                    tuorID: _tuorID,
+                    allReviews: reviewsID!
                 }
-
-                console.log(newAverage)
             }
 
             const objAverage = await schemaAverage.create(newAverage)
-            
-            console.log({objAverage, msg: 'Average created!'})
 
             return objAverage._id.toString()
             
@@ -73,7 +70,7 @@ const averageController = {
     },
     getAllAverage: async (req: Request, res: Response) => {
         try {
-            const objReview = await schemaAverage.find()
+            const objReview = await schemaAverage.find().populate('allReviews')
 
             if (!objReview)
                 res.status(400).json({"Average not found!": 'error'})
@@ -107,13 +104,14 @@ const averageController = {
             let SUMconfort: number = 0
             let SUMfood: number = 0
             let SUMaverage: number = 0
+            // eslint-disable-next-line prefer-const
+            let reviewsID: string[] = ['']
 
             const allReviews = await schemaReviews.find({tuorID: _tuorID})
-            console.log(allReviews)
        
             const length: number = allReviews.length
 
-            allReviews.map((review) => {
+            allReviews.map((review, index) => {
                 SUMservice += review.nota_service
                 SUMlocation += review.nota_location
                 SUMamenities += review.nota_amenities
@@ -121,6 +119,7 @@ const averageController = {
                 SUMconfort += review.nota_confort
                 SUMfood += review.nota_food 
                 SUMaverage += review.nota_average!
+                reviewsID[index] = review._id.toString()
             })
 
             const updateAverage: averageProps = {
@@ -132,15 +131,14 @@ const averageController = {
                 avg_food: SUMfood / length,
                 avg_average: SUMaverage / length,
                 qtdReviews: length,
-                tuorID: _tuorID
+                tuorID: _tuorID,
+                allReviews: reviewsID!
             }
-
-            console.log(updateAverage)
 
             const objReview = await schemaAverage.findOneAndUpdate({tuorID: _tuorID}, updateAverage)
 
             if(!objReview)
-                console.log("Average not found.")
+                console.error("Average not found.")
             
             console.log('Review updated!')
             

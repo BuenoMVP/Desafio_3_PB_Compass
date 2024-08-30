@@ -26,7 +26,7 @@ interface tuorsProps {
     time: number,
     max_person: number,
     min_age: number,
-    reviews?: string
+    reviews?: [averageProps]
 }
 
 interface averageProps {
@@ -39,7 +39,7 @@ interface averageProps {
     avg_average?: number,
     qtdReviews?: number,
     tuorID?: string,
-    allReviews?: string[]
+    allReviews?: [reviewsProps][]
 }
 
 export type { categoriesProps, tuorsProps, reviewsProps, averageProps }

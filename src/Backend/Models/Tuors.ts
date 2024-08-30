@@ -33,6 +33,11 @@ const tuorsSchema = new Schema<tuorsProps>({
     min_age: {
         type: Number,
         required: true
+    },
+    reviews: {
+        type: Schema.Types.ObjectId,
+        ref: 'Average',
+        require: false
     }
 })
 

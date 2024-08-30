@@ -1,6 +1,7 @@
 import schemaReviews from "../Models/Reviews";
 import { Request, Response } from "express";
 import { reviewsProps } from "../Types/bdTypes";
+import averageController from "./averageController";
 
 const reviewsController = {
     postReviews: async (req: Request, res: Response) => {
@@ -15,10 +16,20 @@ const reviewsController = {
                 nota_prices: req.body.nota_prices,
                 nota_confort: req.body.nota_confort,
                 nota_food: req.body.nota_food,
+                nota_average: (
+                    req.body.nota_service + 
+                    req.body.nota_location + 
+                    req.body.nota_amenities + 
+                    req.body.nota_prices +
+                    req.body.nota_confort +
+                    req.body.nota_food
+                ) / 6,
                 tuorID: req.body.tuorID
             }
 
             const objReview = await schemaReviews.create(newReview)
+
+            await averageController.updateAverage(req.body.tuorID)
             
             res.status(201).json({objReview, msg: 'Review created!'})
             
@@ -63,10 +74,20 @@ const reviewsController = {
                 nota_prices: req.body.nota_prices,
                 nota_confort: req.body.nota_confort,
                 nota_food: req.body.nota_food,
+                nota_average: (
+                    req.body.nota_service + 
+                    req.body.nota_location + 
+                    req.body.nota_amenities + 
+                    req.body.nota_prices +
+                    req.body.nota_confort +
+                    req.body.nota_food
+                ) / 6,
                 tuorID: req.body.tuorID
             }
 
             const objReview = await schemaReviews.findByIdAndUpdate(id, updateReview)
+
+            await averageController.updateAverage(req.body.tuorID)
 
             if(!objReview)
                 res.status(404).json({err: "Review not found."})

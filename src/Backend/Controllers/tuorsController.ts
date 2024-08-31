@@ -1,8 +1,9 @@
 import schemaTuors from "../Models/Tuors";
 import { Request, Response } from "express";
-import { averageProps, tuorsProps } from "../Types/bdTypes";
+import { averageProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
 import averageController from "./averageController";
 import schemaAverage from "../Models/Average";
+import schemaReviews from "../Models/Reviews";
 
 const tuorsController = {
     postTuors: async (req: Request, res: Response) => {
@@ -137,14 +138,15 @@ const tuorsController = {
     getTuorsById: async (req: Request, res: Response) => {
         try {
             const { id } = req.params
-            const objTuor = await schemaTuors.findById(id).populate({
-                path: 'reviews',
-                populate: {
-                    path: 'allReviews'
-                }
-            })
+            const objTuor: tuorsProps | null = await schemaTuors.findOne({_id: id})
+            const objAverage: averageProps | null = await schemaAverage.findOne({tuorID: id})
+            const objReviews: reviewsProps[] | null = await schemaReviews.find({tuorID: id})
 
-            res.status(200).send(objTuor)
+            res.status(200).send({
+                objTuor,
+                objAverage,
+                objReviews
+            })
         } catch (err) {
             res.status(400).json({"Error to GET Tuor by ID": err})
         }

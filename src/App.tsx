@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/Tuors" element={<Tuors />}/>
-        <Route path="/View" element={<TuorView />}/>
+        <Route path="/Tuors" element={<Tuors />}/> 
+        <Route path="/Tuors/:id" element={<TuorView />}/>
       </Routes>
     </BrowserRouter>
   )

@@ -52,13 +52,12 @@ const Tuor = () => {
   const fetchTuors = async () => {
     try {
       const response = await api.get<RequestProps>(`/tuors?offset=${offset}`)
-      console.log(response.data)
+      console.log(response.data.objTuor)
       // setNextURL(response.data.nextURL)
       // setPreviousURL(response.data.previousURL)
       setOffset(response.data.offset)
       setTuors(response.data.objTuor!)
       console.log('offset: '+offset)
-      console.log(tuors)
     } catch (err) {
       console.error("Erro to find reviews: "+err)
       // setNextURL('null')
@@ -114,10 +113,11 @@ const Tuor = () => {
                     key={index}
                   >
                     <CardTuor 
+                      id={tuor._id!}
                       location={tuor.location}
                       title={tuor.title}
-                      review={3.1}
-                      qtd_review={3.666}
+                      review={tuor.reviews!.avg_average}
+                      qtd_review={tuor.reviews!.qtdReviews}
                       price={tuor.price_person}
                       time={tuor.time}
                     />

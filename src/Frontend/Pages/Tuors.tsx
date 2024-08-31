@@ -7,7 +7,7 @@ import FormInputs from '../Components/FormInputs'
 import { LuArrowDownAZ } from 'react-icons/lu'
 import FiltersComponent from '../Components/FiltersComponent'
 import { useEffect, useState } from 'react'
-import { tuorsProps } from '../../Backend/Types/bdTypes'
+import { averageProps, tuorsProps } from '../../Backend/Types/bdTypes'
 import api from '../Services/api'
 import CardTuor from '../Components/CardTuor'
 
@@ -17,15 +17,17 @@ interface RequestProps {
   limit: number,
   offset: number,
   total: number,
-  objTuor?: tuorsProps[]
+  objTuor: tuorsProps[],
+  objReviews: averageProps[]
 }
 
 const Tuor = () => {
-  // const [nextURL, setNextURL] = useState<string>('null')
-  // const [previousURL, setPreviousURL] = useState<string>('null')
+  const [nextURL, setNextURL] = useState<string>('null')
+  const [previousURL, setPreviousURL] = useState<string>('null')
 
   const [offset, setOffset] = useState<number>(0)
   const [tuors, setTuors] = useState<tuorsProps[]>([])
+  const [reviews, setReviews] = useState<averageProps[]> ([])
 
   const iconSize: number = 20
 
@@ -52,16 +54,15 @@ const Tuor = () => {
   const fetchTuors = async () => {
     try {
       const response = await api.get<RequestProps>(`/tuors?offset=${offset}`)
-      console.log(response.data.objTuor)
-      // setNextURL(response.data.nextURL)
-      // setPreviousURL(response.data.previousURL)
+      setNextURL(response.data.nextURL)
+      setPreviousURL(response.data.previousURL)
       setOffset(response.data.offset)
-      setTuors(response.data.objTuor!)
-      console.log('offset: '+offset)
+      setTuors(response.data.objTuor)
+      setReviews(response.data.objReviews)
     } catch (err) {
-      console.error("Erro to find reviews: "+err)
-      // setNextURL('null')
-      // setPreviousURL('null')
+      console.error("Erro to find tuors: "+err)
+      setNextURL('null')
+      setPreviousURL('null')
       setOffset(0)
     }
   }
@@ -116,8 +117,8 @@ const Tuor = () => {
                       id={tuor._id!}
                       location={tuor.location}
                       title={tuor.title}
-                      review={tuor.reviews!.avg_average}
-                      qtd_review={tuor.reviews!.qtdReviews}
+                      review={reviews[index].avg_average}
+                      qtd_review={reviews[index].qtdReviews}
                       price={tuor.price_person}
                       time={tuor.time}
                     />

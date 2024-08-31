@@ -37,7 +37,7 @@ const tuorsSchema = new Schema<tuorsProps>({
     reviews: {
         type: Schema.Types.ObjectId,
         ref: 'Average',
-        require: false
+        require: true
     }
 })
 

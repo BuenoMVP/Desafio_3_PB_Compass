@@ -1,7 +1,7 @@
 import schemaAverage from "../Models/Average";
 import schemaReviews from "../Models/Reviews";
 import { Request, Response } from "express";
-import { averageProps} from "../Types/bdTypes";
+import { averageProps, reviewsProps} from "../Types/bdTypes";
 
 const averageController = {
     postAverage: async (_tuorID: string) => {
@@ -13,7 +13,7 @@ const averageController = {
             let SUMconfort: number = 0
             let SUMfood: number = 0 
             let SUMaverage: number = 0
-            let reviewsID: string[]
+            let reviewsID: reviewsProps[]
 
             const allReviews = await schemaReviews.find({tuorID: _tuorID})
 
@@ -43,7 +43,7 @@ const averageController = {
                     SUMconfort += review.nota_confort
                     SUMfood += review.nota_food 
                     SUMaverage += review.nota_average!
-                    reviewsID[index] = review._id.toString()
+                    reviewsID[index] = review
                 })
 
                 newAverage = {
@@ -56,13 +56,13 @@ const averageController = {
                     avg_average: SUMaverage / length,
                     qtdReviews: length,
                     tuorID: _tuorID,
-                    allReviews: reviewsID!
+                    allReviews: [...reviewsID!]
                 }
             }
 
             const objAverage = await schemaAverage.create(newAverage)
 
-            return objAverage._id.toString()
+            return objAverage
             
         } catch (err) {
             console.log({"Error to POST Average": err})
@@ -104,8 +104,7 @@ const averageController = {
             let SUMconfort: number = 0
             let SUMfood: number = 0
             let SUMaverage: number = 0
-            // eslint-disable-next-line prefer-const
-            let reviewsID: string[] = ['']
+            let reviewsID: reviewsProps[]
 
             const allReviews = await schemaReviews.find({tuorID: _tuorID})
        
@@ -119,7 +118,7 @@ const averageController = {
                 SUMconfort += review.nota_confort
                 SUMfood += review.nota_food 
                 SUMaverage += review.nota_average!
-                reviewsID[index] = review._id.toString()
+                reviewsID[index] = review
             })
 
             const updateAverage: averageProps = {
@@ -132,7 +131,7 @@ const averageController = {
                 avg_average: SUMaverage / length,
                 qtdReviews: length,
                 tuorID: _tuorID,
-                allReviews: reviewsID!
+                allReviews: [...reviewsID!]
             }
 
             const objReview = await schemaAverage.findOneAndUpdate({tuorID: _tuorID}, updateAverage)

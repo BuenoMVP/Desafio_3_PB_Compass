@@ -10,14 +10,23 @@ import { FaStar } from 'react-icons/fa'
 import api from '../Services/api'
 import StarReview from '../Components/StarReview'
 import ShowReviews from '../Components/ShowReview'
-import { ReviewProps } from '../Types/types'
 import CalcPrice from '../Components/CalcPrice'
 import { useParams } from 'react-router-dom'
+import { averageProps, reviewsProps, tuorsProps } from '../../Backend/Types/bdTypes'
+
+interface RequestProps {
+  objTuor: tuorsProps,
+  objAverage: averageProps,
+  objReviews: reviewsProps[]
+}
 
 const TuorView = () => {
   const { id } = useParams()
 
-  const [reviews, setReviews] = useState<ReviewProps[]>([])!
+  const [tuor, setTuor] = useState<tuorsProps>()
+  const [average, setAverage] = useState<averageProps>()
+  const [reviews, setReviews] = useState<reviewsProps[]>([])
+
   const [nota_service, setService] = useState<number>(1)
   const [nota_location, setLocation] = useState<number>(1)
   const [nota_amenities, setAmenities] = useState<number>(1)
@@ -45,13 +54,15 @@ const TuorView = () => {
 
   const fetchReviews = async () => {
     try {
-      const response = await api.get<ReviewProps[]>("/reviews")
-      console.log(response)
-      setReviews(Array.isArray(response.data) ? response.data : [])
+      const response = await api.get<RequestProps>(`/tuors/${id}`)
+      setTuor(response.data.objTuor)
+      setAverage(response.data.objAverage)
+      setReviews(response.data.objReviews)
+      console.log(tuor)
+      console.log(average)
       console.log(reviews)
     } catch (err) {
       console.error("Erro to find reviews: "+err)
-      setReviews([])
     }
   }
   
@@ -88,16 +99,11 @@ const TuorView = () => {
         <section className={`${global.contentSection} ${global.lastContentSection} ${style.section}`}>
           <aside className={style.tuorBox}>
             Informaçoes do tuor
-            <h1>{id}</h1>
+            <h1>{tuor!.title}</h1>
 
             <div className={style.tuorGroup}>
               <h2 className={`blueText`}>Overview</h2>
-              <span>
-                Istanbul, the vibrant and historic city straddling the continents of Europe and Asia, 
-                offers an enchanting blend of cultures, sights, and experiences that captivate every traveler’s heart.
-                As Turkey’s cultural and economic hub. Instabul seamlesly fuses its rich heritage with modernity, 
-                creating an unforgettable journey for visitors.
-              </span>
+              <span>epsuli</span>
             </div>
 
             <div className={style.tuorGroup}>
@@ -130,10 +136,10 @@ const TuorView = () => {
            
             <div className={style.tuorGroup}>
               <h3>Showing {reviews.length} review</h3>
-              {reviews.map((review, index) => (
+              {reviews.map((review, index) => ( 
                 <div key={index}>
                   <ShowReviews 
-                    key={review._id}
+                    key={review.tuorID}
                     name={review.name}
                     review={review.description}
                     date={review.date}

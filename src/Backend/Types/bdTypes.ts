@@ -18,6 +18,7 @@ interface reviewsProps {
 }
 
 interface tuorsProps {
+    _id?:string,
     title: string,
     overview: string,
     categories: string,

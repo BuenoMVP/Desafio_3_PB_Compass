@@ -1,6 +1,7 @@
 import React from 'react'
 import MediaReview from '../MediaReview'
 import style from './style.module.css'
+import { FaRegUser } from 'react-icons/fa'
 
 interface Props {
     date?: Date,
@@ -11,8 +12,8 @@ interface Props {
 }
 
 const ShowReviews: React.FC<Props>  = (props) => {
-  const img: string = props.name.toUpperCase().substring(0, 2)
-  let date: string = props.date ? props.date.toString() : '0000-00-00'
+  const iconSize: number = 50
+  let date: string = props.date ? props.date.toString() : 'YYYY-MM-DD'
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -23,8 +24,7 @@ const ShowReviews: React.FC<Props>  = (props) => {
   };
 
   if (props.date) {
-    date = props.date.toString()
-    date = formatDate(date);
+    date = formatDate(props.date.toString())
   } else {
     date = 'Error_'
   }
@@ -32,7 +32,7 @@ const ShowReviews: React.FC<Props>  = (props) => {
   return (
     <section className={style.section}>
         <aside className={style.photo}>
-            <h1>{img}</h1>
+          <FaRegUser size={iconSize} />
         </aside>
         <div className={style.information}>
             <span>{date}</span>

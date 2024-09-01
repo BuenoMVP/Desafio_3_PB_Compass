@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import Footer from '../Components/Footer'
@@ -47,7 +48,7 @@ const TuorView = () => {
 
   const lat: number = -23.187049672867087
   const lng: number = -50.65637960242221
-  const avgScore: number = Number(average?.avg_average)
+  const avgScore: number = Number(average?.avg_average.toFixed(1))
   const iconSize: number = 20
   let avgQuality: string
 
@@ -131,7 +132,7 @@ const TuorView = () => {
                 <p>Reviews</p>
                 <span>
                   <IoStar size={15} color='#FD5056'/>
-                  <p className='boldText blueText'>{average?.avg_average}</p>  
+                  <p className='boldText blueText'>{avgScore}</p>  
                   <article>({average?.qtdReviews} reviews)</article> 
                 </span>
               </div>
@@ -151,21 +152,21 @@ const TuorView = () => {
               <h2 className={`blueText`}>Average Reviews</h2>
               <div className={style.averageBox}>
                 <div className={style.averageScore}>
-                  <p className='boldText'>{average?.avg_average}</p>
+                  <p className='boldText'>{avgScore}</p>
                   <span>
                     <FaStar color='#fff' size={iconSize}/>
                     {avgQuality}
                   </span>
                 </div>
                 <div className={style.averageGroup}>
-                  <AverageReviews title='Services' score={average?.avg_service!}/>
-                  <AverageReviews title='Locations' score={average?.avg_location!}/>
-                  <AverageReviews title='Ameneties' score={average?.avg_amenities!}/>
+                  <AverageReviews title='Services' score={Number(average?.avg_service!.toFixed(1))}/>
+                  <AverageReviews title='Locations' score={Number(average?.avg_location!.toFixed(1))}/>
+                  <AverageReviews title='Ameneties' score={Number(average?.avg_amenities!.toFixed(1))}/>
                 </div>
                 <div className={style.averageGroup}>
-                  <AverageReviews title='Prices' score={average?.avg_prices!}/>
-                  <AverageReviews title='Food' score={average?.avg_food!}/>
-                  <AverageReviews title='Room confort and quality' score={average?.avg_confort!}/>
+                  <AverageReviews title='Prices' score={Number(average?.avg_prices!.toFixed(1))}/>
+                  <AverageReviews title='Food' score={Number(average?.avg_food!.toFixed(1))}/>
+                  <AverageReviews title='Room confort and quality' score={Number(average?.avg_confort!.toFixed(1))}/>
                 </div>
               </div>
             </div>
@@ -179,7 +180,7 @@ const TuorView = () => {
                     name={review.name}
                     review={review.description}
                     date={review.date}
-                    avgReview={review.nota_average}
+                    avgReview={Number(review.nota_average.toFixed(1))}
                     qtdReview={15}
                   />
                 </div>

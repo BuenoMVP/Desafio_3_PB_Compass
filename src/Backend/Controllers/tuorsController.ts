@@ -1,9 +1,10 @@
 import schemaTuors from "../Models/Tuors";
 import { Request, Response } from "express";
-import { averageProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
+import { averageProps, categoriesProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
 import averageController from "./averageController";
 import schemaAverage from "../Models/Average";
 import schemaReviews from "../Models/Reviews";
+import schemaCategories from "../Models/Categories";
 
 const tuorsController = {
     postTuors: async (req: Request, res: Response) => {
@@ -66,6 +67,8 @@ const tuorsController = {
 
             const objReviews: averageProps[] = await schemaAverage.find().skip(offset).limit(limit)
 
+            const objCategories: categoriesProps[] = await schemaCategories.find()
+
             if (!objTuor || objTuor.length == 0) {
                 res.status(404).send({Error: 'Tuors not found!'})
             } else {
@@ -85,7 +88,8 @@ const tuorsController = {
                     offset,
                     total,
                     objTuor,
-                    objReviews
+                    objReviews,
+                    objCategories
                 })
             }
         } catch (err) {

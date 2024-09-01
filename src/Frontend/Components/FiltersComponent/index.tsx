@@ -4,7 +4,7 @@ import style from './style.module.css'
 
 interface Props {
     title: string,
-    args: Array<string>
+    args: string[]
 }
 
 const FiltersComponent: React.FC<Props> = ({title, args}) => {

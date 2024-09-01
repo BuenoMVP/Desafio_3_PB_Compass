@@ -1,0 +1,74 @@
+.pageContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5rem 0;
+}
+
+.formLogin {
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #c9c9c9;
+    min-width: 30rem;
+    min-height: 20rem;
+    border-radius: 8px;
+    padding: 5rem;
+    gap: 1rem;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        background-color: red;
+        
+        div {
+            display: inherit;
+            flex-direction: column;
+            gap: .2rem;
+        }
+    }
+
+    .social {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        button {
+            display: inherit;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem;
+            width: 45%;
+            background-color: transparent;
+            cursor: pointer;
+            border-radius: 4px;
+            padding: .5rem;
+        }
+
+        button:hover {
+            transform: scale(1.01);
+        }
+
+        #google {
+            border: 1px solid red;
+        }
+
+        #facebook {
+            border: 1px solid rgb(0, 47, 255);
+        }
+    }
+}

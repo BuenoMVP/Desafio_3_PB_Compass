@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import Footer from '../Components/Footer'
 import FormButton from '../Components/FormButton'
@@ -13,6 +14,10 @@ import ShowReviews from '../Components/ShowReview'
 import CalcPrice from '../Components/CalcPrice'
 import { useParams } from 'react-router-dom'
 import { averageProps, reviewsProps, tuorsProps } from '../../Backend/Types/bdTypes'
+import InfoTour from '../Components/InfoTuor'
+import { IoStar } from 'react-icons/io5'
+// import { GoShareAndroid } from 'react-icons/go'
+// import { CiHeart } from 'react-icons/ci'
 
 interface RequestProps {
   objTuor: tuorsProps,
@@ -27,6 +32,8 @@ const TuorView = () => {
   const [average, setAverage] = useState<averageProps>()
   const [reviews, setReviews] = useState<reviewsProps[]>([])
 
+  const [addReview, setAddReview] = useState<number>(0)
+
   const [nota_service, setService] = useState<number>(1)
   const [nota_location, setLocation] = useState<number>(1)
   const [nota_amenities, setAmenities] = useState<number>(1)
@@ -36,11 +43,11 @@ const TuorView = () => {
   const [name, setName] = useState<string>('anonymous')
   const [email, setEmail] = useState<string>('standart@standart.com')
   const [description, setDescription] = useState<string>('No comment.')
-  const tuorID: string = '66c7887d5277fe78a9645c0e'
+  const tuorID: string | undefined= tuor?._id?.toString()
 
   const lat: number = -23.187049672867087
   const lng: number = -50.65637960242221
-  const avgScore: number = Number(((nota_service + nota_location + nota_amenities + nota_prices + nota_confort + nota_food) / 6).toFixed(1))
+  const avgScore: number = Number(average?.avg_average)
   const iconSize: number = 20
   let avgQuality: string
 
@@ -58,6 +65,7 @@ const TuorView = () => {
       setTuor(response.data.objTuor)
       setAverage(response.data.objAverage)
       setReviews(response.data.objReviews)
+      setAddReview(0)
       console.log(tuor)
       console.log(average)
       console.log(reviews)
@@ -68,7 +76,7 @@ const TuorView = () => {
   
   useEffect(() => {
     fetchReviews()
-  }, [])
+  }, [addReview])
 
   const handleForm = async () => {
 
@@ -87,7 +95,7 @@ const TuorView = () => {
       }
 
       await api.post("/reviews", newReview)
-      console.log('fez o stringify')
+      setAddReview(1)
     } catch (err) {
       console.error('Deu ruim no formulario: '+err)
     }
@@ -98,12 +106,40 @@ const TuorView = () => {
         <Header />
         <section className={`${global.contentSection} ${global.lastContentSection} ${style.section}`}>
           <aside className={style.tuorBox}>
-            Informaçoes do tuor
-            <h1>{tuor!.title}</h1>
+          <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Baloes.jpg" alt="photo" />
+
+            <div className={style.locationStats}>
+              <div>
+                {tuor?.location}
+              </div>
+
+              <div>
+                {/* <><GoShareAndroid size={iconSize} color='#000'/></> 
+                <CiHeart size={iconSize} color='#000'/> */}
+              </div>
+            </div>
+
+            <h1 className={`${style.titleDetail} blueText`}>{tuor?.title}</h1>
+
+            <div className={style.tuorInfo}>
+              <InfoTour title='From' value={`$${tuor?.price_person}`} textBlue={false}/> 
+              <InfoTour title='Duration' value={`${tuor?.time} days`} textBlue={true}/>
+              <InfoTour title='Max People' value={`${tuor?.max_person}`} textBlue={true}/>
+              <InfoTour title='Min Age' value={`${tuor?.min_age}+`} textBlue={true}/>
+              <InfoTour title='Tuor Type' value={`${tuor?.categories}`} textBlue={true}/> 
+              <div>
+                <p>Reviews</p>
+                <span>
+                  <IoStar size={15} color='#FD5056'/>
+                  <p className='boldText blueText'>{average?.avg_average}</p>  
+                  <article>({average?.qtdReviews} reviews)</article> 
+                </span>
+              </div>
+            </div>
 
             <div className={style.tuorGroup}>
               <h2 className={`blueText`}>Overview</h2>
-              <span>epsuli</span>
+              <span>{tuor?.overview}</span>
             </div>
 
             <div className={style.tuorGroup}>
@@ -115,21 +151,21 @@ const TuorView = () => {
               <h2 className={`blueText`}>Average Reviews</h2>
               <div className={style.averageBox}>
                 <div className={style.averageScore}>
-                  <p className='boldText'>{avgScore}</p>
+                  <p className='boldText'>{average?.avg_average}</p>
                   <span>
                     <FaStar color='#fff' size={iconSize}/>
                     {avgQuality}
                   </span>
                 </div>
                 <div className={style.averageGroup}>
-                  <AverageReviews title='Services' score={nota_service}/>
-                  <AverageReviews title='Locations' score={nota_location}/>
-                  <AverageReviews title='Ameneties' score={nota_amenities}/>
+                  <AverageReviews title='Services' score={average?.avg_service!}/>
+                  <AverageReviews title='Locations' score={average?.avg_location!}/>
+                  <AverageReviews title='Ameneties' score={average?.avg_amenities!}/>
                 </div>
                 <div className={style.averageGroup}>
-                  <AverageReviews title='Prices' score={nota_prices}/>
-                  <AverageReviews title='Food' score={nota_food}/>
-                  <AverageReviews title='Room confort and quality' score={nota_confort}/>
+                  <AverageReviews title='Prices' score={average?.avg_prices!}/>
+                  <AverageReviews title='Food' score={average?.avg_food!}/>
+                  <AverageReviews title='Room confort and quality' score={average?.avg_confort!}/>
                 </div>
               </div>
             </div>
@@ -143,8 +179,8 @@ const TuorView = () => {
                     name={review.name}
                     review={review.description}
                     date={review.date}
-                    avgReview={5}
-                    qtdReview={10}
+                    avgReview={review.nota_average}
+                    qtdReview={15}
                   />
                 </div>
               ))}
@@ -188,7 +224,7 @@ const TuorView = () => {
           </aside>
           <aside className={style.priceBox}>
             
-            <CalcPrice value={100}/>
+            <CalcPrice value={tuor?.price_person!}/>
 
           </aside>
         </section>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import BackgroundImage from '../Components/BackgroundImage'

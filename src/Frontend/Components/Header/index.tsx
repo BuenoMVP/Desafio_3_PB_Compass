@@ -2,6 +2,7 @@ import { FiUser } from 'react-icons/fi'
 import HeaderButton from '../HeaderButton'
 import styles from './style.module.css'
 import { IoSearch } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const iconSize:number = 20
@@ -21,11 +22,11 @@ const Header = () => {
             </ul>
         </div>
         <div className={styles.div}>
-            <button className={styles.button}>
+            <Link to='/Login' className={styles.button}>
                 <IoSearch size={iconSize}/>
                 <FiUser size={iconSize}/>
                 <p>Login/Signup</p>
-            </button>
+            </Link>
         </div>
     </section>
   )

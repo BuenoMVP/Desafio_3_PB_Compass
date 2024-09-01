@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import BackgroundImage from '../Components/BackgroundImage'
@@ -5,11 +6,17 @@ import global from './global.module.css'
 import style from './tuors.module.css'
 import FormInputs from '../Components/FormInputs'
 import { LuArrowDownAZ } from 'react-icons/lu'
-import FiltersComponent from '../Components/FiltersComponent'
 import { useEffect, useState } from 'react'
-import { averageProps, tuorsProps } from '../../Backend/Types/bdTypes'
+import { averageProps, categoriesProps, tuorsProps } from '../../Backend/Types/bdTypes'
 import api from '../Services/api'
 import CardTuor from '../Components/CardTuor'
+import CheckBox from '../Components/CheckBox'
+import { IoSearch } from 'react-icons/io5'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
+import FormButton from '../Components/FormButton'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 interface RequestProps {
   nextURL: string,
@@ -18,7 +25,8 @@ interface RequestProps {
   offset: number,
   total: number,
   objTuor: tuorsProps[],
-  objReviews: averageProps[]
+  objReviews: averageProps[],
+  objCategories: categoriesProps[]
 }
 
 const Tuor = () => {
@@ -28,20 +36,15 @@ const Tuor = () => {
   const [offset, setOffset] = useState<number>(0)
   const [tuors, setTuors] = useState<tuorsProps[]>([])
   const [reviews, setReviews] = useState<averageProps[]> ([])
+  const [categories, setCategories] = useState<categoriesProps[]> ([])
+
+  const [filterPrice, setFilterPrice] = useState<number>(0)
+
+  const handleFilterPrice = (e: Event, newPrice: number) => {
+    setFilterPrice(newPrice)
+  }
 
   const iconSize: number = 20
-
-  const vetCategories: string[] = [
-   "Action",
-   "Shooter",
-   "Fighting",
-   "Puzzle",
-   "Survival Horror",
-   "Platform",
-   "Sports",
-   "Metroidvania",
-   "Adventure" 
-  ]
 
   const vetReviews: string[] = [
     '5 Stars',
@@ -59,6 +62,7 @@ const Tuor = () => {
       setOffset(response.data.offset)
       setTuors(response.data.objTuor)
       setReviews(response.data.objReviews)
+      setCategories(response.data.objCategories)
     } catch (err) {
       console.error("Erro to find tuors: "+err)
       setNextURL('null')
@@ -85,9 +89,79 @@ const Tuor = () => {
           </div>
           <div className={style.contentBox}>
             <div className={style.filters}>
-              <FiltersComponent title='Sumary' args={vetCategories}/>
-              <FiltersComponent title='Sumary' args={vetCategories}/>
-              <FiltersComponent title='Reviews' args={vetReviews}/>
+
+              <div className={style.box}>
+                <p>Search</p>
+                <div id={style.searchText}>
+                  <input type="text" placeholder='Type anything...'/>
+                  <IoSearch size={iconSize}/>
+                </div>
+                
+              </div>
+
+              <div className={style.box}>
+                <p>Filter By</p>
+                <form className={style.slider}>
+                  <Box sx={{ width: '100%', gap: '.1rem', display: 'flex', flexDirection: 'column' }}>
+                    <Slider
+                      size="medium"
+                      defaultValue={filterPrice}
+                      aria-label="Small"
+                      min={0}
+                      max={1000}
+                      color='error'
+                      onChange={handleFilterPrice}
+                    />
+                    <div id={style.prices}>
+                      <span>$0.00</span>
+                      <p className='blueText'>${filterPrice}.00</p>
+                    </div>
+                  </Box>
+                  <FormButton title="Submit" type='submit'/>
+                </form>
+              </div>
+
+              <div className={style.box}>
+                <p>Categories</p>
+                {categories.map((categorie, index) => (
+                  <CheckBox 
+                    key={index} 
+                    text={categorie.categorie}
+                  />
+                ))}
+              </div>
+
+              <div className={style.box}>
+                <p>Categories</p>
+                <span>Africa</span>
+                  <CheckBox text='Morocco' />
+                  <CheckBox text='Tanzania' />
+                <span>Americas</span>
+                  <CheckBox text='Argentina' />
+                  <CheckBox text='Cadada' />
+                  <CheckBox text='Colombia' />
+                  <CheckBox text='Costa Rica' />
+                <span>Asia</span>
+                  <CheckBox text='Cambodia' />
+                  <CheckBox text='Japan' />
+                  <CheckBox text='Nepal' />
+                  <CheckBox text='Thailand' />
+                  <CheckBox text='Viet Nam' />
+                <span>Europe</span>
+                  <CheckBox text='France' />
+                  <CheckBox text='Greece' />
+              </div>
+
+              <div className={style.box}>
+                <p>Reviews</p>
+                {vetReviews.map((review, index) => (
+                  <CheckBox 
+                    key={index} 
+                    text={review}
+                  />
+                ))}
+              </div>
+              
             </div>
             <div className={style.tuors}>
               <header>
@@ -126,12 +200,9 @@ const Tuor = () => {
                 ))}
               </section>
               <footer>
-              <button onClick={() => setOffset(offset-9)}>
-                  anterior
-                </button>
-                <button onClick={() => setOffset(offset+9)}>
-                  proximo
-                </button>
+                <Stack spacing={2}>
+                  <Pagination color='error' />
+                </Stack>
               </footer>
             </div>
           </div>

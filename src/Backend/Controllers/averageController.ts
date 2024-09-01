@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import schemaAverage from "../Models/Average";
 import schemaReviews from "../Models/Reviews";
 import { Request, Response } from "express";
@@ -13,7 +14,7 @@ const averageController = {
             let SUMconfort: number = 0
             let SUMfood: number = 0 
             let SUMaverage: number = 0
-            let reviewsID: reviewsProps[]
+            let reviewsID: reviewsProps[] = []
 
             const allReviews = await schemaReviews.find({tuorID: _tuorID})
 
@@ -65,7 +66,7 @@ const averageController = {
             return objAverage
             
         } catch (err) {
-            console.log({"Error to POST Average": err})
+            console.error({"Error to POST Average": err})
         }
     },
     getAllAverage: async (req: Request, res: Response) => {
@@ -104,7 +105,7 @@ const averageController = {
             let SUMconfort: number = 0
             let SUMfood: number = 0
             let SUMaverage: number = 0
-            let reviewsID: reviewsProps[]
+            let reviewsID: reviewsProps[] = []
 
             const allReviews = await schemaReviews.find({tuorID: _tuorID})
        
@@ -117,7 +118,7 @@ const averageController = {
                 SUMprices += review.nota_prices
                 SUMconfort += review.nota_confort
                 SUMfood += review.nota_food 
-                SUMaverage += review.nota_average!
+                SUMaverage += review.nota_average
                 reviewsID[index] = review
             })
 
@@ -138,8 +139,6 @@ const averageController = {
 
             if(!objReview)
                 console.error("Average not found.")
-            
-            console.log('Review updated!')
             
         } catch (err) {
             console.error("Error to UPDATE Average: "+err)

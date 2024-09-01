@@ -7,7 +7,7 @@ const MediaReview = (props: MediaReviewProps) => {
     <section className={style.section}>
         <div>
             <><FaRegStar size={15} color='#fff'/></>
-            {props.review}
+            {props.review.toFixed(1)}
         </div>
         <p>{props.qtd_review} reviews</p>
     </section>

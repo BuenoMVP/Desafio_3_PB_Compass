@@ -159,14 +159,14 @@ const TuorView = () => {
                   </span>
                 </div>
                 <div className={style.averageGroup}>
-                  <AverageReviews title='Services' score={Number(average?.avg_service!.toFixed(1))}/>
-                  <AverageReviews title='Locations' score={Number(average?.avg_location!.toFixed(1))}/>
-                  <AverageReviews title='Ameneties' score={Number(average?.avg_amenities!.toFixed(1))}/>
+                  <AverageReviews title='Services' score={average?.avg_service!}/>
+                  <AverageReviews title='Locations' score={average?.avg_location!}/>
+                  <AverageReviews title='Ameneties' score={average?.avg_amenities!}/>
                 </div>
                 <div className={style.averageGroup}>
-                  <AverageReviews title='Prices' score={Number(average?.avg_prices!.toFixed(1))}/>
-                  <AverageReviews title='Food' score={Number(average?.avg_food!.toFixed(1))}/>
-                  <AverageReviews title='Room confort and quality' score={Number(average?.avg_confort!.toFixed(1))}/>
+                  <AverageReviews title='Prices' score={average?.avg_prices!}/>
+                  <AverageReviews title='Food' score={average?.avg_food!}/>
+                  <AverageReviews title='Room confort and quality' score={average?.avg_confort!}/>
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ const TuorView = () => {
                     name={review.name}
                     review={review.description}
                     date={review.date}
-                    avgReview={Number(review.nota_average.toFixed(1))}
+                    avgReview={review.nota_average}
                     qtdReview={15}
                   />
                 </div>

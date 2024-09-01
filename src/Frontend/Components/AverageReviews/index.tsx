@@ -18,7 +18,7 @@ const AverageReviews = (props: Props) => {
               backgroundColor: '#FC5056'
             }}/>
           </div>
-          <span>{props.score}</span>
+          <span>{props.score.toFixed(1)}</span>
         </div>
     </section>
   )

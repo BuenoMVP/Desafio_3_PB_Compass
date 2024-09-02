@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Footer from '../Components/Footer'
-import FormButton from '../Components/FormButton'
 import Header from '../Components/Header'
 import style from './login.module.css'
 import { FaFacebook, FaGoogle } from 'react-icons/fa'
 
-import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'firebase/auth'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../Services/firebase'
 
 const Login = () => {
@@ -13,6 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState<string>("");
     const [validEmail, setValidEmail] = useState<boolean>(true);
     const [validPassword, setValidPassword] = useState<boolean>(true);
+    const [userLogin, setUserLogin] = useState<boolean>(true)
 
     const regex: RegExp = /^[^\s@]+@[^\s@]+\.(com|br)$/
     
@@ -33,6 +33,28 @@ const Login = () => {
             setValidPassword(true)
         } else {
             setValidPassword(false)
+        }
+    }
+
+    async function handleCreateUser (e: FormEvent) {
+        e.preventDefault()
+        
+        try {
+          const credentials = await createUserWithEmailAndPassword(auth, email, password)
+          console.log(credentials)
+        } catch (error) {
+          console.error({'error': error})
+        }
+    }
+
+    async function handleLoginUser (e: FormEvent) {
+        e.preventDefault()
+        
+        try {
+          const credentials = await signInWithEmailAndPassword(auth, email, password)
+          console.log(credentials)
+        } catch (error) {
+          console.error({'error': error})
         }
     }
 
@@ -66,10 +88,12 @@ const Login = () => {
 
             <div className={style.formLogin}>
                 <div className={style.texts}>
-                    <h1>Log in to find your perfect trip.</h1>
+                    <h1>
+                        { userLogin ? 'Sign In to find your perfect trip.' : 'Sign Up to find your perfect trip.'}
+                    </h1>
                 </div>
 
-                <form action="POST">
+                <form onSubmit={userLogin ? handleLoginUser : handleCreateUser}>
                     <div>
                         <label>Email</label>
                         <input type="text" placeholder='Enter your email' onChange={(e) => validateEmail(e.target.value)}/>
@@ -80,7 +104,19 @@ const Login = () => {
                         <input type="password" placeholder='Enter your passowrd' onChange={(e) => validatePassword(e.target.value)}/>
                         {!validPassword && <p className={style.errorText}>Min 6 characters</p>}
                     </div>
-                    <FormButton title='Login' type='submit' />
+                    
+                    <div>
+                        <button>
+                            <span>{userLogin ? 'Sign In' : 'Sign Up'}</span>
+                        </button>
+
+                        <span>
+                            { userLogin ? 'Do not have a account?' : 'Do you have a account?'}
+                            <p onClick={() => setUserLogin(!userLogin)}> 
+                                {userLogin ? 'Sing Up!' : 'Sign In!'}
+                            </p>
+                        </span>
+                    </div>
                 </form>
                 <h2>OR</h2>
                 <div className={style.social}>
@@ -93,9 +129,6 @@ const Login = () => {
                         Facebook
                     </button>
                 </div>
-
-                <p>Email: {email}</p>
-                <p>Password: {password}</p>
             </div>
 
         </section>

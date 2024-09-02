@@ -29,6 +29,14 @@ interface RequestProps {
   objCategories: categoriesProps[]
 }
 
+interface FilterProps {
+  title: string,
+  price: number,
+  categorie: string,
+  destination: string,
+  review: number
+}
+
 const Tuor = () => {
   const [qtdPages, setQtdPages] = useState<number>(0)
 
@@ -37,7 +45,20 @@ const Tuor = () => {
   const [reviews, setReviews] = useState<averageProps[]> ([])
   const [categories, setCategories] = useState<categoriesProps[]> ([])
 
-  const [filterPrice, setFilterPrice] = useState<number>(0)
+  const [filterTitle, setFilterTitle] = useState<string | null>(null)
+  const [filterPrice, setFilterPrice] = useState<number | null>(null)
+  const [filterCategorie, setFilterCategorie] = useState<string | null>(null)
+  const [filterDestination, setFilterDestination] = useState<string | null>(null)
+  const [filterReview, setFilterReview] = useState<number | null>(null)
+  const [reqFilter, setReqFilter] = useState<boolean>(false)
+
+  const objFilters: FilterProps = {
+    title: filterTitle,
+    price: filterPrice,
+    categorie: filterCategorie,
+    destination: filterDestination,
+    review: filterReview,
+  }
 
   const handleFilterPrice = (e: Event, newPrice: number) => {
     setFilterPrice(newPrice)
@@ -63,20 +84,32 @@ const Tuor = () => {
   ]
 
   const fetchTuors = async () => {
-    try {
-      const response = await api.get<RequestProps>(`/tuors?offset=${offset}`)
-      setTuors(response.data.objTuor)
-      setReviews(response.data.objReviews)
-      setCategories(response.data.objCategories)
-      setQtdPages(Math.ceil((response.data.total)/9))
-    } catch (err) {
-      console.error("Erro to find tuors: "+err)
+    if(reqFilter == false) {
+      try {
+        const response = await api.get<RequestProps>(`/tuors?offset=${offset}`)
+        setTuors(response.data.objTuor)
+        setReviews(response.data.objReviews)
+        setCategories(response.data.objCategories)
+        setQtdPages(Math.ceil((response.data.total)/9))
+      } catch (err) {
+        console.error("Erro to find tuors: "+err)
+      }
+    } else {
+      try {
+        const response = await api.get<RequestProps>(`/tuors/filter?title=${filterTitle}`)
+        setTuors(response.data.objTuor)
+        setReviews(response.data.objReviews)
+        setCategories(response.data.objCategories)
+        setQtdPages(Math.ceil((response.data.total)/9))
+      } catch (err) {
+        console.error("Erro to find tuors: "+err)
+      }
     }
   }
   
   useEffect(() => {
     fetchTuors()
-  }, [offset])
+  }, [offset, reqFilter])
 
   return (
     <main className={style.pageContent}>
@@ -96,8 +129,8 @@ const Tuor = () => {
               <div className={style.box}>
                 <p>Search</p>
                 <div id={style.searchText}>
-                  <input type="text" placeholder='Type anything...'/>
-                  <IoSearch size={iconSize}/>
+                  <input type="text" placeholder='Type anything...' onChange={(e) => setFilterTitle(e.target.value)}/>
+                  <IoSearch size={iconSize} style={{cursor: 'pointer'}} onClick={() => console.log('apertou envio')}/>
                 </div>
                 
               </div>
@@ -135,23 +168,23 @@ const Tuor = () => {
               </div>
 
               <div className={style.box}>
-                <p>Categories</p>
-                <span>Africa</span>
+                <p>Destinations</p>
+                <span className='boldText'>Africa</span>
                   <CheckBox text='Morocco' />
                   <CheckBox text='Tanzania' />
-                <span>Americas</span>
+                <span  className='boldText'>Americas</span>
                   <CheckBox text='Argentina' />
                   <CheckBox text='Canada' />
                   <CheckBox text='Colombia' />
                   <CheckBox text='Costa Rica' />
                   <CheckBox text='Brazil' />
-                <span>Asia</span>
+                <span  className='boldText'>Asia</span>
                   <CheckBox text='Cambodia' />
                   <CheckBox text='Japan' />
                   <CheckBox text='Nepal' />
                   <CheckBox text='Thailand' />
                   <CheckBox text='Viet Nam' />
-                <span>Europe</span>
+                <span  className='boldText'>Europe</span>
                   <CheckBox text='France' />
                   <CheckBox text='Greece' />
               </div>

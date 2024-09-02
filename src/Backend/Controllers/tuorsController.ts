@@ -6,6 +6,13 @@ import schemaAverage from "../Models/Average";
 import schemaReviews from "../Models/Reviews";
 import schemaCategories from "../Models/Categories";
 
+interface FilterProps {
+    title,//: string,
+    price_person,//: number,
+    categories,//: string,
+    location//: string
+  }
+
 const tuorsController = {
     postTuors: async (req: Request, res: Response) => {
         try {
@@ -148,6 +155,74 @@ const tuorsController = {
             })
         } catch (err) {
             res.status(400).json({"Error to GET Tuor by ID": err})
+        }
+    },
+    getFilterTuors: async (req: Request, res: Response) => {
+        const limit:number = 9
+        const offset:number = Number(req.query.offset) | 0
+        const title: string | undefined = req.query.title?.toString()
+        const price: number | undefined = req.query.price
+        const categorie: string | undefined = req.query.categorie?.toString() 
+        const destination: string | undefined = req.query.destination?.toString()
+        
+        try {
+             const query = {}
+            
+            if (title !== undefined && title !== null) {
+                query.title = { $regex: `${title || ""}`, $options: "i" }
+            }
+
+            if (price !== undefined && price !== null) {
+                query.price_person = Number(price)
+            }
+
+            if (categorie !== undefined && categorie !== null) {
+                query.categories = categorie
+            }
+
+            if (destination !== undefined && destination !== null) {
+                query.location = destination.toString()
+            }
+
+            const objTuor: tuorsProps[] = await schemaTuors.find(query).skip(offset).limit(limit).populate('reviews')
+
+            console.log(objTuor)
+
+             const objReviews: averageProps[] = await schemaAverage.find().skip(offset+1).limit(limit)
+            // | void[] = objTuor.map((tuor, index) => {
+            //     objReviews[index] = tuor!.reviews
+            // }) 
+
+            // console.log(objTuor)
+            // console.log(objReviews)
+
+            const objCategories: categoriesProps[] = await schemaCategories.find()
+
+            if (!objTuor || objTuor.length == 0) {
+                res.status(404).send({Error: 'Tuors filter not found!'})
+            } else {
+                
+                const total:number = await schemaTuors.countDocuments()
+                const url:string = req.baseUrl
+    
+                const next:number = offset + limit
+                const nextURL:string = next < total ? `${url}?limit=${limit}&offset=&${next}` : 'null'
+    
+                const previous:number = offset - limit < 0 ? -1 : offset - limit
+                const previousURL: string = previous != -1 ? `${url}?limit=${limit}&offset=&${previous}` : 'null'
+    
+                res.status(200).send({
+                    nextURL,
+                    previousURL,
+                    offset,
+                    total,
+                    objTuor,
+                    objReviews,
+                    objCategories
+                })
+            }
+        } catch (err) {
+            res.status(400).json({"Error to GET Filter": err})
         }
     }
 }

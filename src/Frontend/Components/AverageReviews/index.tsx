@@ -7,6 +7,7 @@ interface Props {
 
 const AverageReviews = (props: Props) => {
   const visualScore: number = props.score * 20
+  const score: number = Number(props.score)
   return (
     <section className={style.section}>
         <p>{props.title}</p>
@@ -18,7 +19,7 @@ const AverageReviews = (props: Props) => {
               backgroundColor: '#FC5056'
             }}/>
           </div>
-          <span>{props.score.toFixed(1)}</span>
+          <span>{score.toFixed(1)}</span>
         </div>
     </section>
   )

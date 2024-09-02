@@ -59,7 +59,7 @@ const tuorsController = {
         try {
             const objTuor: tuorsProps[] = await schemaTuors.find().skip(offset).limit(limit).populate('reviews')
 
-            const objReviews: averageProps[] = await schemaAverage.find().skip(offset).limit(limit)
+            const objReviews: averageProps[] = await schemaAverage.find().skip(offset+1).limit(limit)
 
             const objCategories: categoriesProps[] = await schemaCategories.find()
 

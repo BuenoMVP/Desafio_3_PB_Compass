@@ -30,8 +30,7 @@ interface RequestProps {
 }
 
 const Tuor = () => {
-  const [nextURL, setNextURL] = useState<string>('null')
-  const [previousURL, setPreviousURL] = useState<string>('null')
+  const [qtdPages, setQtdPages] = useState<number>(0)
 
   const [offset, setOffset] = useState<number>(0)
   const [tuors, setTuors] = useState<tuorsProps[]>([])
@@ -42,6 +41,15 @@ const Tuor = () => {
 
   const handleFilterPrice = (e: Event, newPrice: number) => {
     setFilterPrice(newPrice)
+  }
+
+  const handlePagination = (e: Event, value: number) => {
+    if (value === 1 ) {
+      setOffset(0)
+    } else {
+      setOffset((value-1)*9)
+    }
+    window.scrollTo(0, 0)
   }
 
   const iconSize: number = 20
@@ -57,17 +65,12 @@ const Tuor = () => {
   const fetchTuors = async () => {
     try {
       const response = await api.get<RequestProps>(`/tuors?offset=${offset}`)
-      setNextURL(response.data.nextURL)
-      setPreviousURL(response.data.previousURL)
-      setOffset(response.data.offset)
       setTuors(response.data.objTuor)
       setReviews(response.data.objReviews)
       setCategories(response.data.objCategories)
+      setQtdPages(Math.ceil((response.data.total)/9))
     } catch (err) {
       console.error("Erro to find tuors: "+err)
-      setNextURL('null')
-      setPreviousURL('null')
-      setOffset(0)
     }
   }
   
@@ -177,8 +180,7 @@ const Tuor = () => {
                   >
                     <option value="a fazer">Defalut</option>
                     <option value="a fazer">Title</option>
-                    <option value="a fazer">Time</option>
-                    <option value="a fazer">Location</option>
+                    <option value="a fazer">Price</option>
                   </select>
                 </span>
               </header>
@@ -192,8 +194,8 @@ const Tuor = () => {
                       id={tuor._id!}
                       location={tuor.location}
                       title={tuor.title}
-                      review={reviews[index+1].avg_average}
-                      qtd_review={reviews[index+1].qtdReviews}
+                      review={reviews[index].avg_average}
+                      qtd_review={reviews[index].qtdReviews}
                       price={tuor.price_person}
                       time={tuor.time}
                     />
@@ -202,7 +204,11 @@ const Tuor = () => {
               </section>
               <footer>
                 <Stack spacing={2}>
-                  <Pagination color='error' />
+                  <Pagination 
+                    color='error' 
+                    count={qtdPages} 
+                    onChange={handlePagination}
+                  />
                 </Stack>
               </footer>
             </div>

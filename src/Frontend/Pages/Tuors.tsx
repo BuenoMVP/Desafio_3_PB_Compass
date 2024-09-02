@@ -138,9 +138,10 @@ const Tuor = () => {
                   <CheckBox text='Tanzania' />
                 <span>Americas</span>
                   <CheckBox text='Argentina' />
-                  <CheckBox text='Cadada' />
+                  <CheckBox text='Canada' />
                   <CheckBox text='Colombia' />
                   <CheckBox text='Costa Rica' />
+                  <CheckBox text='Brazil' />
                 <span>Asia</span>
                   <CheckBox text='Cambodia' />
                   <CheckBox text='Japan' />
@@ -191,8 +192,8 @@ const Tuor = () => {
                       id={tuor._id!}
                       location={tuor.location}
                       title={tuor.title}
-                      review={reviews[index].avg_average}
-                      qtd_review={reviews[index].qtdReviews}
+                      review={reviews[index+1].avg_average}
+                      qtd_review={reviews[index+1].qtdReviews}
                       price={tuor.price_person}
                       time={tuor.time}
                     />

@@ -14,7 +14,7 @@ import StarReview from '../Components/StarReview'
 import ShowReviews from '../Components/ShowReview'
 import CalcPrice from '../Components/CalcPrice'
 import { useParams } from 'react-router-dom'
-import { averageProps, locationProps, reviewsProps, tuorsProps } from '../../Backend/Types/bdTypes'
+import { averageProps, reviewsProps, tuorsProps } from '../../Backend/Types/bdTypes'
 import InfoTour from '../Components/InfoTuor'
 import { IoStar } from 'react-icons/io5'
 // import { GoShareAndroid } from 'react-icons/go'
@@ -46,7 +46,7 @@ const TuorView = () => {
   const [description, setDescription] = useState<string>('No comment.')
   const tuorID: string | undefined= tuor?._id?.toString()
 
-  const location: string = `${tuor?.location?.country} ${tuor?.location?.city}`
+  const location: string =  `${tuor?.location}, ${tuor?.city}`
   const avgScore: number = Number(average?.avg_average.toFixed(1))
   const iconSize: number = 20
   let avgQuality: string

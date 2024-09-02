@@ -1,40 +1,28 @@
 import schemaTuors from "../Models/Tuors";
 import { Request, Response } from "express";
-import { averageProps, categoriesProps, locationProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
+import { averageProps, categoriesProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
 import averageController from "./averageController";
 import schemaAverage from "../Models/Average";
 import schemaReviews from "../Models/Reviews";
 import schemaCategories from "../Models/Categories";
-import schemaLocation from "../Models/Location";
 
 const tuorsController = {
     postTuors: async (req: Request, res: Response) => {
         try {
-            const { location } = req.body
-
-            const objLocation: locationProps | null = await schemaLocation.findOne({city: location})
+            const avgID: string = '66d23fe125acb556d11d2045'
+            const initialAverage: averageProps | null = await schemaAverage.findById(avgID)
 
             let newTuor: tuorsProps = {
                 title: req.body.title,
                 overview: req.body.overview,
                 categories: req.body.categories,
-                location: objLocation!,
+                location: req.body.location,
+                city: req.body.city,
                 price_person: req.body.price_person,
                 time: req.body.time,
                 max_person: req.body.max_person,
                 min_age: req.body.min_age,
-                reviews: {
-                    avg_service: 0,
-                    avg_location: 0,
-                    avg_amenities: 0,
-                    avg_prices: 0,
-                    avg_confort: 0,
-                    avg_food: 0,
-                    avg_average: 0,
-                    qtdReviews: 0,
-                    tuorID: 'null',
-                    allReviews: []
-                }
+                reviews: initialAverage!
             }
 
             const objTuor = await schemaTuors.create(newTuor)
@@ -48,6 +36,7 @@ const tuorsController = {
                 overview: req.body.overview,
                 categories: req.body.categories,
                 location: req.body.location,
+                city: req.body.city,
                 price_person: req.body.price_person,
                 time: req.body.time,
                 max_person: req.body.max_person,
@@ -118,15 +107,15 @@ const tuorsController = {
     },
     updateTuors: async (req: Request, res: Response) => {
         try {
-            const { id, location } = req.params
+            const { id } = req.params
             const tuorReview: averageProps | null = await schemaAverage.findOne({tuorID: {id}})
-            const objLocation: locationProps | null = await schemaLocation.findOne({city: {location}})
 
             const updateTuor: tuorsProps = {
                 title: req.body.title,
                 overview: req.body.overview,
                 categories: req.body.categories,
-                location: objLocation!,
+                location: req.body.location,
+                city: req.body.city,
                 price_person: req.body.price_person,
                 time: req.body.time,
                 max_person: req.body.max_person,

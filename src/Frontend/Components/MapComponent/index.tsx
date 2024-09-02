@@ -1,7 +1,7 @@
 import axios from 'axios'
 import style from './style.module.css'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 interface Props {
   location: string
@@ -19,19 +19,28 @@ const MapComponent = (props: Props) => {
   })
 
   const getAddress = async (address:string) => {
-    const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${googleApiKey}`
-    )
 
-    const coord = response.data.results[0].geometry.location
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${googleApiKey}`
+      )
+  
+      if (response != undefined || response) {
+        const coord = response.data.results[0].geometry.location
+    
+        setLat(coord.lat)
+        setLng(coord.lng)
+      } else {
+        setLat(-25.441579642364893)
+        setLng(-49.238875817806345)
+      }
+    } catch (err) {
+      console.error('Erro Map: '+err)
+    }
 
-    setLat(coord.lat)
-    setLng(coord.lng)
   }
-
-  useEffect(() => {
-    getAddress(props.location)
-  }, [])
+  
+  getAddress(props.location)
 
   return (
     <section className={style.section}>

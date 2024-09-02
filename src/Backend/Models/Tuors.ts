@@ -16,7 +16,11 @@ const tuorsSchema = new Schema<tuorsProps>({
     },
     location: {
         type: String,
-        required: true
+        require: true
+    },
+    city: {
+        type: String,
+        require: true
     },
     price_person: {
         type: Number,

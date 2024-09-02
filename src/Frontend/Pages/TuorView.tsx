@@ -46,8 +46,7 @@ const TuorView = () => {
   const [description, setDescription] = useState<string>('No comment.')
   const tuorID: string | undefined= tuor?._id?.toString()
 
-  const lat: number = -23.187049672867087
-  const lng: number = -50.65637960242221
+  const location: string =  `${tuor?.location}, ${tuor?.city}`
   const avgScore: number = Number(average?.avg_average.toFixed(1))
   const iconSize: number = 20
   let avgQuality: string
@@ -111,7 +110,7 @@ const TuorView = () => {
 
             <div className={style.locationStats}>
               <div>
-                {tuor?.location}
+                {location}
               </div>
 
               <div>
@@ -145,7 +144,7 @@ const TuorView = () => {
 
             <div className={style.tuorGroup}>
               <h2 className={`blueText`}>Map</h2>
-              <MapComponent lat={lat} lng={lng}/>
+              <MapComponent location={location}/>
             </div>
 
             <div className={style.tuorGroup}>

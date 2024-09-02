@@ -23,6 +23,7 @@ interface tuorsProps {
     overview: string,
     categories: string,
     location: string,
+    city: string,
     price_person: number,
     time: number,
     max_person: number,

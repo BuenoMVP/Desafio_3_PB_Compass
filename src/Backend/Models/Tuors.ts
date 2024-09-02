@@ -15,8 +15,9 @@ const tuorsSchema = new Schema<tuorsProps>({
         required: true
     },
     location: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'Location',
+        require: true
     },
     price_person: {
         type: Number,

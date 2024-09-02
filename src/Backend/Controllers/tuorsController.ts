@@ -1,19 +1,24 @@
 import schemaTuors from "../Models/Tuors";
 import { Request, Response } from "express";
-import { averageProps, categoriesProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
+import { averageProps, categoriesProps, locationProps, reviewsProps, tuorsProps } from "../Types/bdTypes";
 import averageController from "./averageController";
 import schemaAverage from "../Models/Average";
 import schemaReviews from "../Models/Reviews";
 import schemaCategories from "../Models/Categories";
+import schemaLocation from "../Models/Location";
 
 const tuorsController = {
     postTuors: async (req: Request, res: Response) => {
         try {
+            const { location } = req.body
+
+            const objLocation: locationProps | null = await schemaLocation.findOne({city: location})
+
             let newTuor: tuorsProps = {
                 title: req.body.title,
                 overview: req.body.overview,
                 categories: req.body.categories,
-                location: req.body.location,
+                location: objLocation!,
                 price_person: req.body.price_person,
                 time: req.body.time,
                 max_person: req.body.max_person,
@@ -113,14 +118,15 @@ const tuorsController = {
     },
     updateTuors: async (req: Request, res: Response) => {
         try {
-            const { id } = req.params
+            const { id, location } = req.params
             const tuorReview: averageProps | null = await schemaAverage.findOne({tuorID: {id}})
+            const objLocation: locationProps | null = await schemaLocation.findOne({city: {location}})
 
             const updateTuor: tuorsProps = {
                 title: req.body.title,
                 overview: req.body.overview,
                 categories: req.body.categories,
-                location: req.body.location,
+                location: objLocation!,
                 price_person: req.body.price_person,
                 time: req.body.time,
                 max_person: req.body.max_person,

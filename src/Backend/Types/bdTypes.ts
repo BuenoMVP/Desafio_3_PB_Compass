@@ -22,7 +22,7 @@ interface tuorsProps {
     title: string,
     overview: string,
     categories: string,
-    location: string,
+    location: locationProps,
     price_person: number,
     time: number,
     max_person: number,
@@ -43,4 +43,9 @@ interface averageProps {
     allReviews: reviewsProps[]
 }
 
-export type { categoriesProps, tuorsProps, reviewsProps, averageProps }
+interface locationProps {
+    country: string,
+    city: string
+}
+
+export type { categoriesProps, tuorsProps, reviewsProps, averageProps, locationProps }

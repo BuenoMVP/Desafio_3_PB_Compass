@@ -103,7 +103,7 @@ const Tuor = () => {
         setTuors(response.data.objTuor)
         setReviews(response.data.objReviews)
         setCategories(response.data.objCategories)
-        setQtdPages(Math.ceil((response.data.total)/9))
+        setQtdPages(response.data.total)
       } catch (err) {
         console.error("Erro to find tuors: "+err)
       }
@@ -226,7 +226,7 @@ const Tuor = () => {
                     onChange={handleFilterCategorie}
                     >
                       {categories.map((item, index) => (
-                        <FormControlLabel key={index} value={item.categorie} control={<Radio />} label={item.categorie} />
+                        <FormControlLabel key={index} value={item.categorie} control={<Radio color="error" />} label={item.categorie} />
                       ))}
                   </RadioGroup>
                 </FormControl>
@@ -242,23 +242,23 @@ const Tuor = () => {
                     onChange={handleFilterDestination}
                   >
                     <span className='boldText'>Africa</span>
-                      <FormControlLabel value={'Morocco'} control={<Radio />} label='Morocco' />
-                      <FormControlLabel value={'Tanzania'} control={<Radio />} label='Tanzania' />
+                      <FormControlLabel value={'Morocco'} control={<Radio color="error" />} label='Morocco' />
+                      <FormControlLabel value={'Tanzania'} control={<Radio color="error" />} label='Tanzania' />
                     <span className='boldText'>Americas</span>
-                      <FormControlLabel value={'Argentina'} control={<Radio />} label='Argentina' />
-                      <FormControlLabel value={'Canada'} control={<Radio />} label='Canada' />
-                      <FormControlLabel value={'Colombia'} control={<Radio />} label='Colombia' />
-                      <FormControlLabel value={'Costa Rica'} control={<Radio />} label='Costa Rica' />
-                      <FormControlLabel value={'Brazil'} control={<Radio />} label='Brazil' />
+                      <FormControlLabel value={'Argentina'} control={<Radio color="error" />} label='Argentina' />
+                      <FormControlLabel value={'Canada'} control={<Radio color="error" />} label='Canada' />
+                      <FormControlLabel value={'Colombia'} control={<Radio color="error" />} label='Colombia' />
+                      <FormControlLabel value={'Costa Rica'} control={<Radio color="error" />} label='Costa Rica' />
+                      <FormControlLabel value={'Brazil'} control={<Radio color="error" />} label='Brazil' />
                     <span className='boldText'>Asia</span>
-                      <FormControlLabel value={'Cambodia'} control={<Radio />} label='Cambodia' />
-                      <FormControlLabel value={'Japan'} control={<Radio />} label='Japan' />
-                      <FormControlLabel value={'Nepal'} control={<Radio />} label='Nepal' />
-                      <FormControlLabel value={'Thailand'} control={<Radio />} label='Thailand' />
-                      <FormControlLabel value={'Viet Nam'} control={<Radio />} label='Viet Nam' />
+                      <FormControlLabel value={'Cambodia'} control={<Radio color="error" />} label='Cambodia' />
+                      <FormControlLabel value={'Japan'} control={<Radio color="error" />} label='Japan' />
+                      <FormControlLabel value={'Nepal'} control={<Radio color="error" />} label='Nepal' />
+                      <FormControlLabel value={'Thailand'} control={<Radio color="error" />} label='Thailand' />
+                      <FormControlLabel value={'Viet Nam'} control={<Radio color="error" />} label='Viet Nam' />
                     <span className='boldText'>Europa</span>
-                      <FormControlLabel value={'France'} control={<Radio />} label='France' />
-                      <FormControlLabel value={'Greece'} control={<Radio />} label='Greece' />
+                      <FormControlLabel value={'France'} control={<Radio color="error" />} label='France' />
+                      <FormControlLabel value={'Greece'} control={<Radio color="error" />} label='Greece' />
                   </RadioGroup>
                 </FormControl>
               </div>
@@ -273,7 +273,7 @@ const Tuor = () => {
                     onChange={handleFilterReview}
                     >
                       {vetReviews.map((item, index) => (
-                        <FormControlLabel key={index} value={item} control={<Radio />} label={item} />
+                        <FormControlLabel key={index} value={item} control={<Radio color="error" />} label={item} />
                       ))}
                   </RadioGroup>
                 </FormControl>

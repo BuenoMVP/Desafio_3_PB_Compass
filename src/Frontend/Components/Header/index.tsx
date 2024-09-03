@@ -2,10 +2,19 @@ import { FiUser } from 'react-icons/fi'
 import HeaderButton from '../HeaderButton'
 import styles from './style.module.css'
 import { IoSearch } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+import { doSignOut, useAuth } from '../../Contexts/authContext'
 
 const Header = () => {
-  const iconSize:number = 20
+    const iconSize:number = 20
+    const { userLoggedIn } = useAuth()
+
+    const handleLogout = async () => {
+        doSignOut().then(() => (window.location.href = "/"))
+    }
+
+    const handleLogin = () => {
+        doSignOut().then(() => (window.location.href = "/Login"))
+    }
 
   return (
     <section className={styles.section}>
@@ -22,11 +31,11 @@ const Header = () => {
             </ul>
         </div>
         <div className={styles.div}>
-            <Link to='/Login' className={styles.button}>
+            <button onClick={userLoggedIn ? handleLogout : handleLogin} className={styles.button}>
                 <IoSearch size={iconSize}/>
                 <FiUser size={iconSize}/>
-                <p>Login/Signup</p>
-            </Link>
+                <p>{userLoggedIn ? 'Logout' : 'Login/Signup'}</p>
+            </button>
         </div>
     </section>
   )

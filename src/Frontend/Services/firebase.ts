@@ -1,7 +1,5 @@
-
 import { initializeApp } from "firebase/app"
 import { getAuth, Auth } from 'firebase/auth'
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyBwzhcjIeftEpO5XcWtivqMuoZsbbVzmdU",
@@ -15,10 +13,3 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth: Auth = getAuth(app)
-
-// const app = firebase.initializeApp(firebaseConfig)
-
-// const auth = firebaseAuth.initializeAuth(app)
-// firebaseAuth.signInWithEmailAndPassword(auth, "admin@admin.com", "123456")
-//   .then(user => console.log(user))
-//   .catch(error => console.log('error na auth: '+error))

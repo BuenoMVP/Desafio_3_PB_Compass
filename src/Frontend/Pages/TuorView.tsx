@@ -20,6 +20,7 @@ import { IoStar } from 'react-icons/io5'
 import { GoShareAndroid } from 'react-icons/go'
 import { CiHeart } from 'react-icons/ci'
 import { HiOutlineLocationMarker } from "react-icons/hi"
+import SideScroll from '../Components/SideScroll'
 
 interface RequestProps {
   objTuor: tuorsProps,
@@ -236,6 +237,10 @@ const TuorView = () => {
 
           </aside>
         </section>
+        <div className={style.alsoLike}>
+          <h1>You may also like</h1>
+          <SideScroll />
+        </div>
         <Footer />
     </main>
   )

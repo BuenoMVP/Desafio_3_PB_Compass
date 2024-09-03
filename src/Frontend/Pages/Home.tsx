@@ -11,6 +11,7 @@ import { PiQuotes } from 'react-icons/pi'
 import DestinationImage from '../Components/DestinationsImage'
 import TravelGuides from '../Components/TravelGuides'
 import ChooseUsComponent from '../Components/ChooseUsComponent'
+import CategorieScroll from '../Components/CategorieScroll'
 
 const Home = () => {
   return (
@@ -71,6 +72,8 @@ const Home = () => {
         </div>
 
         <TitleSection cursive='Browse By Category' title='Pick a Tuor Type'/>
+        
+        <CategorieScroll />
 
       </section>
 

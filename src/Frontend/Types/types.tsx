@@ -9,7 +9,8 @@ interface InputIconTextProps {
     title: string,
     placeHolder: string,
     typeOperation: string,
-    icon: IconBaseProps
+    icon: IconBaseProps,
+    function?(arg:string):void
 }
 
 interface CardTourProps {

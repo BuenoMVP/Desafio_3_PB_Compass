@@ -10,10 +10,10 @@ import { useAuth } from '../Contexts/authContext'
 import { Navigate } from 'react-router-dom'
 
 const Login = () => {
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [validEmail, setValidEmail] = useState<boolean>(true);
-    const [validPassword, setValidPassword] = useState<boolean>(true);
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [validEmail, setValidEmail] = useState<boolean>(true)
+    const [validPassword, setValidPassword] = useState<boolean>(true)
     const [userLogin, setUserLogin] = useState<boolean>(true)
     const { userLoggedIn } = useAuth()
 

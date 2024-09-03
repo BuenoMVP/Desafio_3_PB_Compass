@@ -33,9 +33,9 @@ const FormInputs = () => {
                 icon={<PiUsers size={iconSize} color={iconColor} />} 
                 title='Guests' 
                 placeHolder='Guests' 
-                typeOperation='text'
+                typeOperation='number'
             />
-            <FormButton title='Search' goTo='' />
+            <FormButton title='Search' type='button' />
         </form>
     </section>
   )

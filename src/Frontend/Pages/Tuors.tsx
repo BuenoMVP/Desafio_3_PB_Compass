@@ -42,6 +42,9 @@ const Tuor = () => {
 
   const [aux, setAux] = useState<boolean>(false)
 
+  const [sort, setSort] = useState<string>('Title')
+  const [order, setOrder] = useState<boolean>(false)
+
   const [filterTitle, setFilterTitle] = useState<string | null>(null)
   const [filterPrice, setFilterPrice] = useState<number | null>(null)
   const [filterCategorie, setFilterCategorie] = useState<string | null>(null)
@@ -112,22 +115,65 @@ const Tuor = () => {
         console.log('Destination na req: '+filterDestination)
 
         const response = await api.get<RequestProps>(`/filter?title=${filterTitle}&price=${filterPrice}&categorie=${filterCategorie}&destination=${filterDestination}`)
-        console.log(response)
         setTuors(response.data.objTuor)
         setReviews(response.data.objReviews)
         setCategories(response.data.objCategories)
         setQtdPages(response.data.total)
         setReqFilter(false)
-        console.log('qtdPages: '+qtdPages)
       } catch (err) {
         console.error("Erro to find tuors: "+err)
       }
     }
   }
+
+  const fetchSort = () => {
+    if (sort == 'Title') {
+      if (order) {
+        setTuors(tuors.sort((a: tuorsProps, b: tuorsProps) => {
+          if (a.title < b.title) {
+            return -1
+          } else {
+            return true
+          }
+        }))
+      } else {
+        setTuors(tuors.sort((a: tuorsProps, b: tuorsProps) => {
+          if (a.title > b.title) {
+            return -1
+          } else {
+            return true
+          }
+        }))
+      }
+    } else {
+      if (order) {
+        setTuors(tuors.sort((a: tuorsProps, b: tuorsProps) => {
+          if (a.price_person < b.price_person) {
+            return -1
+          } else {
+            return true
+          }
+        }))
+      } else {
+        setTuors(tuors.sort((a: tuorsProps, b: tuorsProps) => {
+          if (a.price_person > b.price_person) {
+            return -1
+          } else {
+            return true
+          }
+        }))
+      }
+    }
+
+  }
   
   useEffect(() => {
     fetchTuors()
   }, [offset, aux])
+
+  useEffect(() => {
+    fetchSort()
+  }, [sort, order])
 
   return (
     <main className={style.pageContent}>
@@ -245,14 +291,15 @@ const Tuor = () => {
                 <span>
                   <p>Sort by </p>
                   <div id={style.orderBox}>
-                    <LuArrowDownAZ size={iconSize} />
+                    <LuArrowDownAZ size={iconSize} onClick={() => setOrder(!order)}/>
                   </div>
                   <select 
                     name='Filter'
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
                   >
-                    <option value="a fazer">Defalut</option>
-                    <option value="a fazer">Title</option>
-                    <option value="a fazer">Price</option>
+                    <option value="Title">Title</option>
+                    <option value="Price">Price</option>
                   </select>
                 </span>
               </header>

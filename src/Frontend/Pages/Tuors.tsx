@@ -109,11 +109,6 @@ const Tuor = () => {
       }
     } else {
       try {
-        console.log('title na req: '+filterTitle)
-        console.log('price na req: '+filterPrice)
-        console.log('Categorie na req: '+filterCategorie)
-        console.log('Destination na req: '+filterDestination)
-
         const response = await api.get<RequestProps>(`/filter?title=${filterTitle}&price=${filterPrice}&categorie=${filterCategorie}&destination=${filterDestination}`)
         setTuors(response.data.objTuor)
         setReviews(response.data.objReviews)

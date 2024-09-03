@@ -68,9 +68,6 @@ const TuorView = () => {
       setAverage(response.data.objAverage)
       setReviews(response.data.objReviews)
       setAddReview(0)
-      console.log(tuor)
-      console.log(average)
-      console.log(reviews)
     } catch (err) {
       console.error("Erro to find reviews: "+err)
     }

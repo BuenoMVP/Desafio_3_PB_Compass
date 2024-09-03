@@ -64,17 +64,15 @@ const Login = () => {
 
         signInWithPopup(auth, googleProvider)
             .then(res => console.log(res))
-            .catch(err =>console.log(err))
+            .catch(err =>console.error(err))
     }
 
     function handleFacebook () {
         const faceProvider = new FacebookAuthProvider()
 
-        console.log(faceProvider)
-
         signInWithPopup(auth, faceProvider)
             .then(res => console.log(res))
-            .catch(err =>console.log(err))
+            .catch(err =>console.error(err))
     }
 
   return (

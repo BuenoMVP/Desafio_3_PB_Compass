@@ -1,11 +1,11 @@
 import style from './style.module.css'
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Splide, SplideSlide } from '@splidejs/react-splide'
 import CardTuor from '../CardTuor/index'
 import api from '../../Services/api'
 
 import '@splidejs/react-splide/css'
-import { averageProps, categoriesProps, tuorsProps } from '../../../Backend/Types/bdTypes';
-import { useEffect, useState } from 'react';
+import { averageProps, categoriesProps, tuorsProps } from '../../../Backend/Types/bdTypes'
+import { useEffect, useState } from 'react'
 
 interface RequestProps {
   nextURL: string,
@@ -47,10 +47,14 @@ const SideScroll = () => {
     <section className={style.section}>
         <Splide options={settings} className={style.slider}>
           {tuors.map((tuor, index) => (      
-            <SplideSlide className={style.sliderItem}>
+            <SplideSlide 
+              className={style.sliderItem}
+              key={index}
+            >
               <CardTuor 
                 id={tuor._id!}
                 location={tuor.location}
+                city={tuor.city}
                 title={tuor.title}
                 review={reviews[index].avg_average}
                 qtd_review={reviews[index].qtdReviews}

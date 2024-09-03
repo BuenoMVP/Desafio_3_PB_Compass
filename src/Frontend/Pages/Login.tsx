@@ -6,13 +6,16 @@ import { FaFacebook, FaGoogle } from 'react-icons/fa'
 
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../Services/firebase'
+import { useAuth } from '../Contexts/authContext'
+import { Navigate } from 'react-router-dom'
 
 const Login = () => {
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [validEmail, setValidEmail] = useState<boolean>(true);
-    const [validPassword, setValidPassword] = useState<boolean>(true);
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [validEmail, setValidEmail] = useState<boolean>(true)
+    const [validPassword, setValidPassword] = useState<boolean>(true)
     const [userLogin, setUserLogin] = useState<boolean>(true)
+    const { userLoggedIn } = useAuth()
 
     const regex: RegExp = /^[^\s@]+@[^\s@]+\.(com|br)$/
     
@@ -40,8 +43,7 @@ const Login = () => {
         e.preventDefault()
         
         try {
-          const credentials = await createUserWithEmailAndPassword(auth, email, password)
-          console.log(credentials)
+          await createUserWithEmailAndPassword(auth, email, password)
         } catch (error) {
           console.error({'error': error})
         }
@@ -51,8 +53,7 @@ const Login = () => {
         e.preventDefault()
         
         try {
-          const credentials = await signInWithEmailAndPassword(auth, email, password)
-          console.log(credentials)
+          await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
           console.error({'error': error})
         }
@@ -63,21 +64,20 @@ const Login = () => {
 
         signInWithPopup(auth, googleProvider)
             .then(res => console.log(res))
-            .catch(err =>console.log(err))
+            .catch(err =>console.error(err))
     }
 
     function handleFacebook () {
         const faceProvider = new FacebookAuthProvider()
 
-        console.log(faceProvider)
-
         signInWithPopup(auth, faceProvider)
             .then(res => console.log(res))
-            .catch(err =>console.log(err))
+            .catch(err =>console.error(err))
     }
 
   return (
     <main className={style.pageContent}>
+        {userLoggedIn && <Navigate to="/Tuors" replace={true} />}
         <Header />
         <section className={`${style.section}`}>
             <div className={`${style.apresentation} blueText`}>
@@ -106,7 +106,7 @@ const Login = () => {
                     </div>
                     
                     <div>
-                        <button>
+                        <button type='submit'>
                             <span>{userLogin ? 'Sign In' : 'Sign Up'}</span>
                         </button>
 

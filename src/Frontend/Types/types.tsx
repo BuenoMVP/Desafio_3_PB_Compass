@@ -9,12 +9,14 @@ interface InputIconTextProps {
     title: string,
     placeHolder: string,
     typeOperation: string,
-    icon: IconBaseProps
+    icon: IconBaseProps,
+    function?(arg:string):void
 }
 
 interface CardTourProps {
     id: string,
     location: string, 
+    city: string,
     title: string,
     review: number,
     qtd_review: number,

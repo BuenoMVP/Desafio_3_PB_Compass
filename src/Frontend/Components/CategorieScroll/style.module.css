@@ -1,0 +1,44 @@
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    width: 100%;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: 1px solid #c9c9c9;
+        width: 35rem;
+        height: 10rem;
+        padding: 1rem;
+        cursor: pointer;
+
+        article {
+            display: flex;
+            flex-direction: column;
+            gap: .1rem;
+        }
+
+        p {
+            display: inherit;
+            gap: 1rem;
+        }
+    }
+}
+
+#redBall {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50px;
+    background: rgb(255, 0, 0, 0.75);
+    top: 15px;
+}
+
+#price {
+    font-size: 20px;
+}

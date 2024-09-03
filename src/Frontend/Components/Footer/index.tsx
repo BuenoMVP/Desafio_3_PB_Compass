@@ -3,9 +3,22 @@ import style from './styles.module.css'
 import InputIconText from '../InputIconText'
 import { PiPaperPlaneTilt } from 'react-icons/pi'
 import FormButton from '../FormButton'
+import { useState } from 'react'
 
 const Footer = () => {
+  const [validEmail, setValidEmail] = useState<boolean>(true)
+
   const iconSize:number = 20
+
+  const regex: RegExp = /^[^\s@]+@[^\s@]+\.(com|br)$/
+
+  function validateEmail (value: string) {
+    if (regex.test(value)) {
+        setValidEmail(true)
+    } else {
+        setValidEmail(false)
+    }
+}
 
   return (
     <section className={style.section}>
@@ -58,10 +71,19 @@ const Footer = () => {
                     placeHolder='Enter email...'
                     typeOperation='text'
                     icon={<PiPaperPlaneTilt size={20} color='#A9AFBB'/>}
+                    function={validateEmail}
                 />
+                <p 
+                    style={{
+                        color: validEmail ? 'transparent' : '#ff0000', 
+                        paddingBottom: '.5rem'
+                    }}
+                >
+                    {validEmail ? 'Valid Email' : 'Invalid Email'}
+                </p>
                 <FormButton 
                     title='Submit'
-                    goTo=''
+                    type='button'
                 />
             </form>
             <p>@ 2023 Trisog All Right Reserved</p>

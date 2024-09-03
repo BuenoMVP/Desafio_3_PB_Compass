@@ -10,6 +10,7 @@ const InputIconText = (props: InputIconTextProps) => {
             <input 
                 type={props.typeOperation} 
                 placeholder={props.placeHolder}
+                onChange={(e) => props.function!(e.target.value)}
             />
         </div>
     </section>

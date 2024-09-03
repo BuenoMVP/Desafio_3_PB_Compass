@@ -12,7 +12,7 @@ const CardTuor = (props: CardTourProps) => {
     >
         <img src='https://desafio-3-mvbp-bucket.s3.amazonaws.com/Baloes.jpg' alt="Card Image" />
         <div className={style.informationBox}>
-            <span>{props.location}</span>
+            <span>{props.location}, {props.city}</span>
             <p className={`${style.title} blueText`}>{props.title}</p>
             <div className={style.dataBox}>
                 <div className={style.box}>

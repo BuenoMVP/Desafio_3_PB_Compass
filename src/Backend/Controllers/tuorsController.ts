@@ -177,17 +177,15 @@ const tuorsController = {
                 query.location = destination.toString()
             }
 
-            console.log(query)
-
             const objTuor: tuorsProps[] = await schemaTuors.find(query).skip(offset).limit(limit).populate('reviews')
-
-            console.log(objTuor)
+            
+            const totalTuorsFilter: tuorsProps[] = await schemaTuors.find(query)
 
             const objCategories: categoriesProps[] = await schemaCategories.find()
 
             const objReviews: averageProps[] = await schemaAverage.find().skip(offset+1).limit(limit)
             
-            let total:number = await schemaTuors.countDocuments()
+            let total:number = totalTuorsFilter.length
             const url:string = req.baseUrl
 
             const next:number = offset + limit
@@ -195,8 +193,6 @@ const tuorsController = {
 
             const previous:number = offset - limit < 0 ? -1 : offset - limit
             const previousURL: string = previous != -1 ? `${url}?limit=${limit}&offset=&${previous}` : 'null'
-
-            total = objTuor.length
 
             if (total > 0 && objTuor) {
                 res.status(200).send({

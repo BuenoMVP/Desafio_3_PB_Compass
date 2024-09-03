@@ -116,7 +116,7 @@ const Tuor = () => {
         setTuors(response.data.objTuor)
         setReviews(response.data.objReviews)
         setCategories(response.data.objCategories)
-        setQtdPages(Math.ceil((response.data.total)/9))
+        setQtdPages(response.data.total)
         setReqFilter(false)
         console.log('qtdPages: '+qtdPages)
       } catch (err) {
@@ -241,7 +241,7 @@ const Tuor = () => {
             </div>
             <div className={style.tuors}>
               <header>
-                <p>{tuors.length} tuors</p>
+                <p>{qtdPages} tuors</p>
                 <span>
                   <p>Sort by </p>
                   <div id={style.orderBox}>
@@ -287,7 +287,7 @@ const Tuor = () => {
                 <Stack spacing={2}>
                   <Pagination 
                     color='error' 
-                    count={qtdPages} 
+                    count={Math.ceil((qtdPages)/9)} 
                     onChange={handlePagination}
                   />
                 </Stack>

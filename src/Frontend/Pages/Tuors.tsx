@@ -226,6 +226,7 @@ const Tuor = () => {
                     <CardTuor 
                       id={tuor._id!}
                       location={tuor.location}
+                      city={tuor.city}
                       title={tuor.title}
                       review={reviews[index].avg_average}
                       qtd_review={reviews[index].qtdReviews}

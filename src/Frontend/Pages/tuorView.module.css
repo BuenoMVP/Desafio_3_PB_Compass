@@ -1,7 +1,6 @@
 .section {
     display: flex;
     flex-direction: row;
-    margin-top: 5rem;
     justify-content: center;
     align-items: start;
     width: 100%;
@@ -17,18 +16,34 @@
     height: auto;
     gap: 3rem;
 
+    .introductionInfo {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
     .locationStats {
         display: flex;
         width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            display: inherit;
+            gap: .5rem;
+        }
     }
 
     img {
         width: 100%;
+        padding-bottom: 1rem;
     }
 
     h1 {
         font-size: 32px;
         width: 100%;
+        padding-bottom: 1rem;
     }
 
     h2 {

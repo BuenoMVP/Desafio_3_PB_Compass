@@ -17,8 +17,9 @@ import { useParams } from 'react-router-dom'
 import { averageProps, reviewsProps, tuorsProps } from '../../Backend/Types/bdTypes'
 import InfoTour from '../Components/InfoTuor'
 import { IoStar } from 'react-icons/io5'
-// import { GoShareAndroid } from 'react-icons/go'
-// import { CiHeart } from 'react-icons/ci'
+import { GoShareAndroid } from 'react-icons/go'
+import { CiHeart } from 'react-icons/ci'
+import { HiOutlineLocationMarker } from "react-icons/hi"
 
 interface RequestProps {
   objTuor: tuorsProps,
@@ -106,36 +107,43 @@ const TuorView = () => {
         <Header />
         <section className={`${global.contentSection} ${global.lastContentSection} ${style.section}`}>
           <aside className={style.tuorBox}>
-          <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Baloes.jpg" alt="photo" />
 
-            <div className={style.locationStats}>
-              <div>
-                {location}
+            <section className={style.introductionInfo}>
+
+              <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Baloes.jpg" alt="photo" />
+
+              <div className={style.locationStats}>
+                <div>
+                  <HiOutlineLocationMarker size={iconSize} color='#000'/>
+                  {location}
+                </div>
+
+                <div>
+                  <><GoShareAndroid size={iconSize} color='#000'/></> 
+                  <CiHeart size={iconSize} color='#000'/>
+                </div>
               </div>
 
-              <div>
-                {/* <><GoShareAndroid size={iconSize} color='#000'/></> 
-                <CiHeart size={iconSize} color='#000'/> */}
-              </div>
-            </div>
+              <h1 className={`${style.titleDetail} blueText`}>{tuor?.title}</h1>
 
-            <h1 className={`${style.titleDetail} blueText`}>{tuor?.title}</h1>
-
-            <div className={style.tuorInfo}>
-              <InfoTour title='From' value={`$${tuor?.price_person}`} textBlue={false}/> 
-              <InfoTour title='Duration' value={`${tuor?.time} days`} textBlue={true}/>
-              <InfoTour title='Max People' value={`${tuor?.max_person}`} textBlue={true}/>
-              <InfoTour title='Min Age' value={`${tuor?.min_age}+`} textBlue={true}/>
-              <InfoTour title='Tuor Type' value={`${tuor?.categories}`} textBlue={true}/> 
-              <div>
-                <p>Reviews</p>
-                <span>
-                  <IoStar size={15} color='#FD5056'/>
-                  <p className='boldText blueText'>{avgScore}</p>  
-                  <article>({average?.qtdReviews} reviews)</article> 
-                </span>
+              <div className={style.tuorInfo}>
+                <InfoTour title='From' value={`$${tuor?.price_person}`} textBlue={false}/> 
+                <InfoTour title='Duration' value={`${tuor?.time} days`} textBlue={true}/>
+                <InfoTour title='Max People' value={`${tuor?.max_person}`} textBlue={true}/>
+                <InfoTour title='Min Age' value={`${tuor?.min_age}+`} textBlue={true}/>
+                <InfoTour title='Tuor Type' value={`${tuor?.categories}`} textBlue={true}/> 
+                <div>
+                  <p>Reviews</p>
+                  <span>
+                    <IoStar size={15} color='#FD5056'/>
+                    <p className='boldText blueText'>{avgScore}</p>  
+                    <article>({average?.qtdReviews} reviews)</article> 
+                  </span>
+                </div>
               </div>
-            </div>
+
+            </section>
+
 
             <div className={style.tuorGroup}>
               <h2 className={`blueText`}>Overview</h2>

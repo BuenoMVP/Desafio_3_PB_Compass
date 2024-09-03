@@ -16,6 +16,7 @@ interface InputIconTextProps {
 interface CardTourProps {
     id: string,
     location: string, 
+    city: string,
     title: string,
     review: number,
     qtd_review: number,

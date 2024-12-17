@@ -82,7 +82,7 @@ const Login = () => {
         <section className={`${style.section}`}>
             <div className={`${style.apresentation} blueText`}>
                 <img src="https://desafio-3-mvbp-bucket.s3.amazonaws.com/Logo_Black.svg" alt="logo-image" />   
-                <h1>Your journey starts here. <p className='redText'>Let's explore the world together.</p></h1>
+                <h1>Your journey starts here.<p className='redText'> Let's explore the world together.</p></h1>
                 <h2>Ready to plan your next adventure?</h2>
             </div>
 
